@@ -66,6 +66,6 @@ public class Door : MonoBehaviour
     //reponse to a door being clicked. All doors listen to this
     public void DoorWasClicked()
     {
-            IsFrozen = true;
+        IsFrozen = true;
     }
 }
