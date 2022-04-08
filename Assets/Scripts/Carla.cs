@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Carla : Chef
 {
+    //ENCAPSULATION 
     string[] dialogueOptions = new string[3];
     public override string DialogueOption {
 
@@ -17,6 +18,7 @@ public class Carla : Chef
     {
         anim = GetComponent<Animator>();
         originalPosition = transform.position;
+        originalRotation = transform.rotation;
         InitializeDialogue();
     }
 
@@ -38,6 +40,7 @@ public class Carla : Chef
 
     //}
 
+    //POLYMORPHISM - each chef moves at dif pace and has dif dialogue options
     public override void ChefSequence()
     {
         base.ChefSequence();

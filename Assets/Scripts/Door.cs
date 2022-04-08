@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] float scaleMultiplier = 1.1f;
     Vector3 originalScale;
 
-    //encapsulation
+    //ENCAPSULATION
     public bool IsHovering { get; private set; }
     public bool IsSelected { get; private set; }
     public bool IsFrozen { get; private set; }
@@ -67,5 +67,13 @@ public class Door : MonoBehaviour
     public void DoorWasClicked()
     {
         IsFrozen = true;
+    }
+
+    public void ResetDoors()
+    {
+        IsFrozen = false;
+        IsSelected = false;
+        anim.SetBool("DoorTriggered", false);
+
     }
 }

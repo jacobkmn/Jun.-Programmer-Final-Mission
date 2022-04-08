@@ -4,12 +4,15 @@ using UnityEngine;
 
 public abstract class Chef : MonoBehaviour
 {
+    [SerializeField] GameEvent OnNestedChef;
+
     protected Animator anim;
 
     [SerializeField] GameObject focalPoint;
     [SerializeField] protected GameObject targetDestination;
     protected Vector3 originalPosition;
     protected Vector3 targetPosition;
+    protected Quaternion originalRotation;
     [SerializeField] [Range(0f, 1.0f)] float lerpSpeed;
     protected float current, target;
 
@@ -31,21 +34,32 @@ public abstract class Chef : MonoBehaviour
 
         targetPosition = targetDestination.transform.position;
 
+        if (target == 0) LookBack();
+
         while (elapsedTime < time)
         {
             Animate();
             current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(originalPosition, targetPosition, current);
             elapsedTime += Time.deltaTime;
+
             yield return null;
         }
-        FaceForward();
-        yield return new WaitForSeconds(0.3f);
-        UIMenuHandler.instance.DisplayDialogue();
-        //transform.position = targetPosition;
+
+        if (target == 1)
+        {
+            FaceForward();
+            yield return new WaitForSeconds(0.3f);
+            UIMenuHandler.instance.DisplayDialogue();
+        }
+        else if (target == 0)
+        {
+            ResetRotation();
+            OnNestedChef.Raise();
+        }
     }
 
-    //Handles animation states
+    //ABSTRACTION - Handles animation states
     protected void Animate()
     {
         if (transform.position == originalPosition)
@@ -68,8 +82,19 @@ public abstract class Chef : MonoBehaviour
         }
     }
 
+    //ABSTRACTION - faces character forward once they've moved to center
     void FaceForward()
     {
-        transform.LookAt(focalPoint.transform);
+            transform.LookAt(focalPoint.transform);
+    }
+
+    void ResetRotation()
+    {
+            transform.rotation = originalRotation;
+    }
+
+    void LookBack()
+    {
+        transform.LookAt(originalPosition);
     }
 }
