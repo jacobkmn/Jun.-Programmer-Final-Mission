@@ -15,8 +15,8 @@ public class FoodTextButton : MonoBehaviour
 
     void OnButtonClicked()
     {
-        UIMenuHandler.instance.Response();
-        print("test");
+        UIMenuHandler.instance.DisplayResponseDialogue();
+        //print("test");
     }
 
     void DetermineFoodType()

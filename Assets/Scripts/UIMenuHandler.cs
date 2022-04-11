@@ -7,6 +7,8 @@ public class UIMenuHandler : MonoBehaviour
 {
     public static UIMenuHandler instance;
 
+    [Header("Events")]
+    public GameEvent OnOrderPlaced;
     public GameEvent OnDialogueEnd;
 
     [Header("Dialogue Bar")]
@@ -17,21 +19,40 @@ public class UIMenuHandler : MonoBehaviour
     public Animator FoodMenuAnimator;
     public Text[] FoodTextOptions;
 
+    bool orderBeingPlaced;
+    public bool OrderBeingPlaced
+    {
+        get { return orderBeingPlaced; }
+        set { orderBeingPlaced = value; }
+    }
+
     private void Awake()
     {
         instance = this;
     }
 
     //Displays dialogue bar when chef is center stage - comes from MoveChef coroutine in base chef class
-    public void DisplayDialogue()
+    public void DisplayInitialDialogue()
     {
-        DialogueBarCanvas.gameObject.SetActive(true);
-        StartCoroutine(WaitForInput());
+        StartCoroutine(InitialDialogue());
+    }
+
+    public void DisplayResponseDialogue()
+    {
+        StartCoroutine(ResponseDialogue());
+    }
+
+    public void DisplayDeliveryDialogue()
+    {
+        StartCoroutine(DeliveryDialogue());
     }
 
     //wait for user to click enter
-    IEnumerator WaitForInput()
+    IEnumerator InitialDialogue()
     {
+        DialogueBarText.text = InitialDialogueString();
+        DialogueBarCanvas.gameObject.SetActive(true);
+
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
             if (Input.GetKeyDown(KeyCode.Return))
@@ -55,19 +76,43 @@ public class UIMenuHandler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 DialogueBarCanvas.gameObject.SetActive(false);
-                OnDialogueEnd.Raise();
+                OnOrderPlaced.Raise(); //starts chef sequence. Listener attached to chefs in inspector
+                orderBeingPlaced = true; //gets picked up by chef class, at bottom of MoveChef coroutine
             }
             yield return null;
         }
     }
 
+    IEnumerator DeliveryDialogue()
+    {
+        orderBeingPlaced = false;
+        DialogueBarText.text = DeliveryDialogueString();
+        DialogueBarCanvas.gameObject.SetActive(true);
+
+        while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                DialogueBarCanvas.gameObject.SetActive(false);
+                OnDialogueEnd.Raise(); //starts chef sequence. Listener attached to chef in inspector
+            }
+            yield return null;
+        }
+    }
+
+    //Probably going to run into a problem here of all chefs listening to ondialogueend simultaneously.
+    //Lets cross that bridge when we get there
+    string InitialDialogueString()
+    {
+        return ChefReader.instance.currentChef.chefData.InitialDialogueOption;
+    }
     string ResponseDialogueString()
     {
         return ChefReader.instance.currentChef.chefData.ResponseDialogueOption;
     }
 
-    public void Response()
+    string DeliveryDialogueString()
     {
-        StartCoroutine(ResponseDialogue());
+        return ChefReader.instance.currentChef.chefData.DeliveryDialogueOption;
     }
 }

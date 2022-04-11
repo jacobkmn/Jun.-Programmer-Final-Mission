@@ -24,4 +24,22 @@ public class ChefData : ScriptableObject
         set { responseDialogueOptions[Random.Range(0, responseDialogueOptions.Count)] = value; }
 
     }
+
+    [SerializeField] List<string> deliveryDialogueOptions = new List<string>();
+    public string DeliveryDialogueOption
+    {
+
+        get { return deliveryDialogueOptions[Random.Range(0, deliveryDialogueOptions.Count)]; }
+
+        set { deliveryDialogueOptions[Random.Range(0, deliveryDialogueOptions.Count)] = value; }
+
+    }
+
+    [SerializeField] List<GameObject> availableFood = new List<GameObject>();
+    public GameObject AvailableFood
+    {
+        get { return availableFood[Random.Range(0, availableFood.Count)]; }
+
+        set { availableFood[Random.Range(0, availableFood.Count)] = value; }
+    }
 }

@@ -1233,6 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd07745af03b43c6978ccfc25641dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnOrderPlaced: {fileID: 11400000, guid: a17905586601048c482a66621a141e5b, type: 2}
   OnDialogueEnd: {fileID: 11400000, guid: 731d52dfbf8994c64940292adb9c2998, type: 2}
   DialogueBarCanvas: {fileID: 418868157}
   DialogueBarImage: {fileID: 0}
@@ -1886,6 +1887,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1171144502545038, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
   m_PrefabInstance: {fileID: 2085761468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &979740998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979740997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 299bbd89a684344a2a1d22e4530058ee, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 979740999}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: ChefIsPreparingFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &979740999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,6 +2684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chefData: {fileID: 11400000, guid: 95a785d91a12a461f8d2c29ee0304ef1, type: 2}
+  OnOrderBeingPrepared: {fileID: 11400000, guid: 299bbd89a684344a2a1d22e4530058ee, type: 2}
+  OnOrderReady: {fileID: 11400000, guid: 05600f732dc35469d9fb3bbf442ee9a1, type: 2}
   OnNestedChef: {fileID: 11400000, guid: 9316eef41bb6d4ac9a4411bbf29eb358, type: 2}
   focalPoint: {fileID: 813044266}
   targetDestination: {fileID: 206492579}
@@ -2699,7 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 731d52dfbf8994c64940292adb9c2998, type: 2}
+  gameEvent: {fileID: 11400000, guid: a17905586601048c482a66621a141e5b, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -2731,6 +2762,62 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &1380486926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380486919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 731d52dfbf8994c64940292adb9c2998, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1380486922}
+        m_TargetAssemblyTypeName: Carla, Assembly-CSharp
+        m_MethodName: ChefSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1380486927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380486919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 05600f732dc35469d9fb3bbf442ee9a1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1380486922}
+        m_TargetAssemblyTypeName: Carla, Assembly-CSharp
+        m_MethodName: ChefSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1417575106
 GameObject:
   m_ObjectHideFlags: 0

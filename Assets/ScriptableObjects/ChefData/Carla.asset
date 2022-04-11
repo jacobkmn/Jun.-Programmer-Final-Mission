@@ -19,3 +19,8 @@ MonoBehaviour:
   responseDialogueOptions:
   - '"I''ll be right back."'
   - '"Just a minute."'
+  deliveryDialogueOptions:
+  - '"Enjoy mijo!"'
+  - '"Here you go sweetie."'
+  availableFood:
+  - {fileID: 100000, guid: 10d25933610222845ad3760a855829c4, type: 3}

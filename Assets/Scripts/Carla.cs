@@ -15,7 +15,6 @@ public class Carla : Chef
     public override void ChefSequence()
     {
         base.ChefSequence();
-        StartCoroutine(MoveChef(2.15f)); //moves chef to center and starts dialogue sequence
-        UIMenuHandler.instance.DialogueBarText.text = chefData.InitialDialogueOption; //comes from chefData scriptableobject attached to chef class
+        StartCoroutine(MoveChef(2.15f)); //moves chef to center stage
     }
 }

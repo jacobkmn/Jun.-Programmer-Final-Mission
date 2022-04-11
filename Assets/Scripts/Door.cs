@@ -69,6 +69,23 @@ public class Door : MonoBehaviour
         IsFrozen = true;
     }
 
+    public void ChefIsPreparingFood()
+    {
+        StartCoroutine(DoorSwing());
+    }
+
+    IEnumerator DoorSwing()
+    {
+        if (IsSelected && IsFrozen)
+        {
+            anim.SetBool("DoorTriggered", false);
+        }
+
+        yield return new WaitForSeconds(5);
+
+        anim.SetBool("DoorTriggered", true);
+    }
+
     public void ResetDoors()
     {
         IsFrozen = false;

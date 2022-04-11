@@ -7,6 +7,8 @@ public abstract class Chef : MonoBehaviour
     [SerializeField] public ChefData chefData;
 
     [Header("Events")]
+    [SerializeField] GameEvent OnOrderBeingPrepared;
+    [SerializeField] GameEvent OnOrderReady;
     [SerializeField] GameEvent OnNestedChef;
 
     protected Animator anim;
@@ -47,19 +49,41 @@ public abstract class Chef : MonoBehaviour
             yield return null;
         }
 
-        //if character is coming out of doors, face forward and trigger dialogue
-        //else if char just exited the scene, reset its rotation and trigger event that doors are listening to
-        if (target == 1)
+        //positions the chef and triggers dialogue in order of sequence
+        if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == false)
         {
             FaceForward();
             yield return new WaitForSeconds(0.3f);
-            UIMenuHandler.instance.DisplayDialogue();
+            UIMenuHandler.instance.DisplayInitialDialogue();
         }
-        else if (target == 0)
+        else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == true)
         {
             ResetRotation();
-            OnNestedChef.Raise();
+            OnOrderBeingPrepared.Raise(); //tells the doors to close
+            StartCoroutine(PrepareFood());
         }
+        else if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == true)
+        {
+            FaceForward();
+            yield return new WaitForSeconds(0.3f);
+            UIMenuHandler.instance.DisplayDeliveryDialogue();
+        }
+        else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == false)
+        {
+            ResetRotation();
+            OnNestedChef.Raise(); //listened to by Doors
+        }
+    }
+
+    //at this point, the user has clicked a food item on menu and chef has returned behind doors to prepare it
+    protected IEnumerator PrepareFood()
+    {
+        //AudioSource.play (audio of pots and plans clanging)
+        yield return new WaitForSeconds(5);
+
+        OnOrderReady.Raise();
+
+        yield return null;
     }
 
     //ABSTRACTION - Handles animation states
