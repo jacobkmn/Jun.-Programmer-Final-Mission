@@ -15,8 +15,8 @@ public class FoodTextButton : MonoBehaviour
 
     void OnButtonClicked()
     {
-        UIMenuHandler.instance.FoodMenuAnimator.SetBool("Reveal_hand", false);
-        UIMenuHandler.instance.OnDialogueEnd.Raise();
+        UIMenuHandler.instance.Response();
+        print("test");
     }
 
     void DetermineFoodType()

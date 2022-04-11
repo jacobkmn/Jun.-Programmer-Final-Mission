@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Food Data", menuName = "Food Data")]
 public class FoodData : ScriptableObject
 {
-    string foodName;
+    [SerializeField] string foodName;
     public string FoodName
     {
         get { return foodName; }

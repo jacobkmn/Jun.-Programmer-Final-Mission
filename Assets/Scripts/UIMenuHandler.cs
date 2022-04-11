@@ -11,6 +11,7 @@ public class UIMenuHandler : MonoBehaviour
 
     [Header("Dialogue Bar")]
     [SerializeField] Canvas DialogueBarCanvas;
+    public Image DialogueBarImage;
     public Text DialogueBarText;
     [Header("Food Menu")]
     public Animator FoodMenuAnimator;
@@ -31,15 +32,42 @@ public class UIMenuHandler : MonoBehaviour
     //wait for user to click enter
     IEnumerator WaitForInput()
     {
-        while(DialogueBarCanvas.gameObject.activeInHierarchy == true)
+        while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 DialogueBarCanvas.gameObject.SetActive(false);
                 FoodMenuAnimator.SetBool("Reveal_hand", true);
             }
-
             yield return null;
         }
+    }
+
+    IEnumerator ResponseDialogue()
+    {
+        FoodMenuAnimator.SetBool("Reveal_hand", false);
+        yield return new WaitForSeconds(1);
+        DialogueBarText.text = ResponseDialogueString();
+        DialogueBarCanvas.gameObject.SetActive(true);
+
+        while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                DialogueBarCanvas.gameObject.SetActive(false);
+                OnDialogueEnd.Raise();
+            }
+            yield return null;
+        }
+    }
+
+    string ResponseDialogueString()
+    {
+        return ChefReader.instance.currentChef.chefData.ResponseDialogueOption;
+    }
+
+    public void Response()
+    {
+        StartCoroutine(ResponseDialogue());
     }
 }

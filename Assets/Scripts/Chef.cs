@@ -4,10 +4,14 @@ using UnityEngine;
 
 public abstract class Chef : MonoBehaviour
 {
+    [SerializeField] public ChefData chefData;
+
+    [Header("Events")]
     [SerializeField] GameEvent OnNestedChef;
 
     protected Animator anim;
 
+    [Header("Movement Info")]
     [SerializeField] GameObject focalPoint;
     [SerializeField] protected GameObject targetDestination;
     protected Vector3 originalPosition;
@@ -15,9 +19,6 @@ public abstract class Chef : MonoBehaviour
     protected Quaternion originalRotation;
     [SerializeField] [Range(0f, 1.0f)] float lerpSpeed;
     protected float current, target;
-
-    //each inidivudal chef class has their own dialogue options
-    public abstract string DialogueOption { get; set; }
 
     //activates the respective character when door is clicked
     public virtual void ChefSequence()
@@ -31,11 +32,11 @@ public abstract class Chef : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         float elapsedTime = 0;
-
         targetPosition = targetDestination.transform.position;
 
-        if (target == 0) LookBack();
+        if (target == 0) LookBack(); //if character is walking back to door, flip x
 
+        //lerp inside of coroutine
         while (elapsedTime < time)
         {
             Animate();
@@ -46,6 +47,8 @@ public abstract class Chef : MonoBehaviour
             yield return null;
         }
 
+        //if character is coming out of doors, face forward and trigger dialogue
+        //else if char just exited the scene, reset its rotation and trigger event that doors are listening to
         if (target == 1)
         {
             FaceForward();

@@ -1235,6 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDialogueEnd: {fileID: 11400000, guid: 731d52dfbf8994c64940292adb9c2998, type: 2}
   DialogueBarCanvas: {fileID: 418868157}
+  DialogueBarImage: {fileID: 0}
   DialogueBarText: {fileID: 1524154558}
   FoodMenuAnimator: {fileID: 2022429757}
   FoodTextOptions:
@@ -1740,6 +1741,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945221551}
   m_CullTransparentMesh: 1
+--- !u!1 &959863378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 959863380}
+  - component: {fileID: 959863379}
+  - component: {fileID: 959863381}
+  m_Layer: 0
+  m_Name: Chef Reader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &959863379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959863378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.8257675, y: 0.37299898, z: 2.3124425}
+  m_Center: {x: -0.42715502, y: -0.044045046, z: -0.04072559}
+--- !u!4 &959863380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959863378}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.62, y: 0, z: -3.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &959863381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959863378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8338b3e0a729344309431fea5207565a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2571,6 +2629,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f3f69bcf5a1514c458ed5c9b96f28e34, type: 3}
   m_PrefabInstance: {fileID: 832027684}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1380486921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380486919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.12195511, z: 1}
+  m_Center: {x: 0, y: 0.06260511, z: 0}
 --- !u!114 &1380486922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2583,6 +2654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0cbd073e08540a4be7cafb2f721864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chefData: {fileID: 11400000, guid: 95a785d91a12a461f8d2c29ee0304ef1, type: 2}
   OnNestedChef: {fileID: 11400000, guid: 9316eef41bb6d4ac9a4411bbf29eb358, type: 2}
   focalPoint: {fileID: 813044266}
   targetDestination: {fileID: 206492579}
@@ -2643,6 +2715,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!54 &1380486925
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380486919}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &1417575106
 GameObject:
   m_ObjectHideFlags: 0
