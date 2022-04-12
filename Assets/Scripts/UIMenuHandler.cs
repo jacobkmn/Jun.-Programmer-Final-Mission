@@ -17,7 +17,7 @@ public class UIMenuHandler : MonoBehaviour
     public Text DialogueBarText;
     [Header("Food Menu")]
     public Animator FoodMenuAnimator;
-    public Text[] FoodTextOptions;
+    [SerializeField] List<Text> FoodTextOptions;
 
     bool orderBeingPlaced;
     public bool OrderBeingPlaced
@@ -50,6 +50,7 @@ public class UIMenuHandler : MonoBehaviour
     //wait for user to click enter
     IEnumerator InitialDialogue()
     {
+        DialogueBarImage.sprite = ActiveChefSprite();
         DialogueBarText.text = InitialDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
 
@@ -114,5 +115,10 @@ public class UIMenuHandler : MonoBehaviour
     string DeliveryDialogueString()
     {
         return ChefReader.instance.currentChef.chefData.DeliveryDialogueOption;
+    }
+
+    Sprite ActiveChefSprite()
+    {
+        return ChefReader.instance.currentChef.chefData.DesignatedImage;
     }
 }

@@ -5,6 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Chef Data", menuName = "Chef Data")]
 public class ChefData : ScriptableObject
 {
+    [SerializeField] Sprite designatedImage;
+    public Sprite DesignatedImage
+    {
+        get { return designatedImage; }
+    }
+
     [SerializeField] List<string> initialDialogueOptions = new List<string>();
     public string InitialDialogueOption
     {
