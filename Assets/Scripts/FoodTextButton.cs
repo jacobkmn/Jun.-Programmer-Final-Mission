@@ -7,6 +7,7 @@ public class FoodTextButton : MonoBehaviour
 {
 
     [SerializeField] Button button;
+    [SerializeField] Text designatedFoodItem;
 
     void Start()
     {
@@ -16,17 +17,17 @@ public class FoodTextButton : MonoBehaviour
     void OnButtonClicked()
     {
         UIMenuHandler.instance.DisplayResponseDialogue();
+
+        RelaySelectedFood();
     }
 
-    void DetermineFoodType()
+    void RelaySelectedFood()
     {
-        //need a way to pass to this function which chef is active according to which door was clicked
-
-        //switch ()
-        //{
-        //    default:
-        //        print("No valid chef");
-        //        break;
-        //}
+        if (designatedFoodItem.text == "Chocolate Chip" || designatedFoodItem.text == "Chocolate Chip")
+        {
+            FoodDisplay.instance.SelectedFood = "Cookie";
+        }
+        else
+            FoodDisplay.instance.SelectedFood = designatedFoodItem.text;
     }
 }

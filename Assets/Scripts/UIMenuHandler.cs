@@ -15,9 +15,13 @@ public class UIMenuHandler : MonoBehaviour
     [SerializeField] Canvas DialogueBarCanvas;
     public Image DialogueBarImage;
     public Text DialogueBarText;
+
     [Header("Food Menu")]
     public Animator FoodMenuAnimator;
     [SerializeField] List<Text> FoodTextOptions;
+
+    [Header("Food Display")]
+    [SerializeField] Canvas FoodDisplayCanvas;
 
     bool orderBeingPlaced;
     public bool OrderBeingPlaced
@@ -47,11 +51,12 @@ public class UIMenuHandler : MonoBehaviour
         StartCoroutine(DeliveryDialogue());
     }
 
-    //wait for user to click enter
+    //Initialize Dialogue data and wait for player input
     IEnumerator InitialDialogue()
     {
         DialogueBarImage.sprite = ActiveChefSprite();
         DialogueBarText.text = InitialDialogueString();
+        ActivateButtons();
         DialogueBarCanvas.gameObject.SetActive(true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
@@ -95,6 +100,7 @@ public class UIMenuHandler : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 DialogueBarCanvas.gameObject.SetActive(false);
+                FoodDisplayCanvas.gameObject.SetActive(true);
                 OnDialogueEnd.Raise(); //starts chef sequence. Listener attached to chef in inspector
             }
             yield return null;
@@ -120,5 +126,17 @@ public class UIMenuHandler : MonoBehaviour
     Sprite ActiveChefSprite()
     {
         return ChefReader.instance.currentChef.chefData.DesignatedImage;
+    }
+
+    //loops thrpugh available food options in the active chef's chefdata
+    //activates a button for each option and sets the text = the food option name
+    void ActivateButtons()
+    {
+        for (int i = 0; i < ChefReader.instance.currentChef.chefData.AvailableFoodNames.Count; i++)
+        {
+            Transform button = FoodTextOptions[i].transform.parent;
+            button.gameObject.SetActive(true);
+            FoodTextOptions[i].text = ChefReader.instance.currentChef.chefData.AvailableFoodNames[i];
+        }
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f814c75a22047e4933f105244ee15d, type: 3}
   m_Name: Carla
   m_EditorClassIdentifier: 
+  designatedImage: {fileID: 21300000, guid: f87114d4d88c643efa73826e983624d0, type: 3}
   initialDialogueOptions:
   - '"What''ll it be honey?'
   - '"A fresh batch just came out the oven!"'
@@ -22,5 +23,8 @@ MonoBehaviour:
   deliveryDialogueOptions:
   - '"Enjoy mijo!"'
   - '"Here you go sweetie."'
+  availableFoodNames:
+  - Chocolate Chip
+  - Oatmeal Raisin
   availableFood:
   - {fileID: 100000, guid: 10d25933610222845ad3760a855829c4, type: 3}

@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Chef
+  - Apple
+  - Banana
+  - Cookie
+  - Pear
+  - Pizza
+  - Sandwich
   layers:
   - Default
   - TransparentFX

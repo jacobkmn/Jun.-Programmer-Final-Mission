@@ -41,11 +41,15 @@ public class ChefData : ScriptableObject
 
     }
 
-    [SerializeField] List<GameObject> availableFood = new List<GameObject>();
-    public GameObject AvailableFood
+    [SerializeField] List<string> availableFoodNames = new List<string>();
+    public List<string> AvailableFoodNames
     {
-        get { return availableFood[Random.Range(0, availableFood.Count)]; }
+        get { return availableFoodNames; }
+    }
 
-        set { availableFood[Random.Range(0, availableFood.Count)] = value; }
+    [SerializeField] List<GameObject> availableFood = new List<GameObject>();
+    public List<GameObject> AvailableFood
+    {
+        get { return availableFood; }
     }
 }

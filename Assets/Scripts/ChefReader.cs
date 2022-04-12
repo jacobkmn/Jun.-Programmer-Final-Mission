@@ -15,6 +15,7 @@ public class ChefReader : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         currentChef = other.gameObject.GetComponent<Chef>();
+        currentChef.IsActive = true;
         print("Current chef is: " + currentChef);
     }
 

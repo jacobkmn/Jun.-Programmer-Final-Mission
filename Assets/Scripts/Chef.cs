@@ -22,6 +22,15 @@ public abstract class Chef : MonoBehaviour
     [SerializeField] [Range(0f, 1.0f)] float lerpSpeed;
     protected float current, target;
 
+    //When you eventually run into the problem of all chefs activating simultaneously, this is the solution
+    //this is also referenced in chef reader
+    bool isActive;
+    public bool IsActive
+    {
+        get { return isActive; }
+        set { isActive = value; }
+    }
+
     //activates the respective character when door is clicked
     public virtual void ChefSequence()
     {
@@ -82,6 +91,8 @@ public abstract class Chef : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         OnOrderReady.Raise();
+        //chef listens to this in inspector and responds with chef sequence
+        //done in inspector because each chef subclass overrides the original chefsequence()
 
         yield return null;
     }
