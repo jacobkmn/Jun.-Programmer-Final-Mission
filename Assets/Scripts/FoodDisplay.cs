@@ -24,7 +24,7 @@ public class FoodDisplay : MonoBehaviour
     GameObject activeFood;
     [SerializeField] float rotateSpeed = 5.0f;
 
-    //big box collider reads each chef behind doors
+    //attached trigger collider detects all chefs in scene
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Chef")
@@ -64,6 +64,7 @@ public class FoodDisplay : MonoBehaviour
         }
     }
 
+    //cycle through all detected chefs and count how many food options they serve
     void CalculateTotalFoodOptions()
     {
         for (int i = 0; i < availableChefs.Count; i++)
@@ -74,6 +75,7 @@ public class FoodDisplay : MonoBehaviour
         }
     }
 
+    //displays the food that was ordered (clicked)
     public void ActivateFood()
     {
         foreach (GameObject food in PooledFood)
@@ -87,17 +89,23 @@ public class FoodDisplay : MonoBehaviour
         StartCoroutine(RotateFood());
     }
 
+    //Reset 
     public void DeActivateFood()
     {
-
+        activeFood.SetActive(false);
+        activeFood = null;
+        StopAllCoroutines();
     }
 
+    //Auto-rotate food on y-axis
     IEnumerator RotateFood()
     {
        while (activeFood.gameObject.activeInHierarchy)
-        activeFood.transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed);
+        {
+            activeFood.transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed, Space.World);
 
-        yield return null;
+            yield return null;
+        }
     }
 
 }

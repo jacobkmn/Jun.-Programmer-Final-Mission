@@ -19,9 +19,14 @@ public class UIMenuHandler : MonoBehaviour
     [Header("Food Menu")]
     public Animator FoodMenuAnimator;
     [SerializeField] List<Text> FoodTextOptions;
+    List<Transform> ActiveButtons = new List<Transform>();
 
     [Header("Food Display")]
-    [SerializeField] Canvas FoodDisplayCanvas;
+    [SerializeField] Image foodDisplayStar;
+    public Image FoodDisplayStar
+    {
+        get { return foodDisplayStar; }
+    }
 
     bool orderBeingPlaced;
     public bool OrderBeingPlaced
@@ -91,6 +96,7 @@ public class UIMenuHandler : MonoBehaviour
 
     IEnumerator DeliveryDialogue()
     {
+        DeActivateButtons();
         orderBeingPlaced = false;
         DialogueBarText.text = DeliveryDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
@@ -99,8 +105,14 @@ public class UIMenuHandler : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                LightBehavior.instance.Dim();
+                //animate the food display to move on the z-axis while the light is dimming
                 DialogueBarCanvas.gameObject.SetActive(false);
-                FoodDisplayCanvas.gameObject.SetActive(true);
+
+                yield return new WaitForSeconds(1);
+
+                FoodDisplayStar.gameObject.SetActive(true);
+                FoodDisplay.instance.ActivateFood();
                 OnDialogueEnd.Raise(); //starts chef sequence. Listener attached to chef in inspector
             }
             yield return null;
@@ -134,9 +146,21 @@ public class UIMenuHandler : MonoBehaviour
     {
         for (int i = 0; i < ChefReader.instance.currentChef.chefData.AvailableFoodNames.Count; i++)
         {
-            Transform button = FoodTextOptions[i].transform.parent;
+            Transform button = FoodTextOptions[i].transform.parent; //the parent button to the child text object in this list
+            ActiveButtons.Add(button);
             button.gameObject.SetActive(true);
             FoodTextOptions[i].text = ChefReader.instance.currentChef.chefData.AvailableFoodNames[i];
         }
+    }
+
+    void DeActivateButtons()
+    {
+        for (int i = 0; i < ActiveButtons.Count; i++)
+        {
+            Transform button = ActiveButtons[i]; 
+            button.gameObject.SetActive(false);
+            button.GetComponentInChildren<Text>().text = "";
+        }
+        ActiveButtons.Clear();
     }
 }

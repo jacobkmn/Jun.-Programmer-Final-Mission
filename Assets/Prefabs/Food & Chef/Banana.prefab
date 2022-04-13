@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4400008515522110}
   - component: {fileID: 33814857596305084}
   - component: {fileID: 23357046182606914}
+  - component: {fileID: -5482051932969595026}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Banana
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180137445707430}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.442249, z: -5.6}
+  m_LocalPosition: {x: 0, y: 1.5, z: -5.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-5482051932969595026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180137445707430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a28834093a834a9faa2e921011d493d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnFoodEaten: {fileID: 11400000, guid: 0d4eae5b70b6b47efbbf4fa5b2e1c5e3, type: 2}

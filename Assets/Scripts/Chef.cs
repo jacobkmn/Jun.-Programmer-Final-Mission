@@ -40,47 +40,51 @@ public abstract class Chef : MonoBehaviour
     //chef moves to center stage
     protected IEnumerator MoveChef(float time)
     {
-        yield return new WaitForSeconds(1);
-
-        float elapsedTime = 0;
-        targetPosition = targetDestination.transform.position;
-
-        if (target == 0) LookBack(); //if character is walking back to door, flip x
-
-        //lerp inside of coroutine
-        while (elapsedTime < time)
+        if (DoorHandler.instance.DoorSelected == chefData.designatedDoor.ToString())
         {
-            Animate();
-            current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
-            transform.position = Vector3.Lerp(originalPosition, targetPosition, current);
-            elapsedTime += Time.deltaTime;
+            Debug.Log("Door selected: " + DoorHandler.instance.DoorSelected);
+            yield return new WaitForSeconds(1);
 
-            yield return null;
-        }
+            float elapsedTime = 0;
+            targetPosition = targetDestination.transform.position;
 
-        //positions the chef and triggers dialogue in order of sequence
-        if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == false)
-        {
-            FaceForward();
-            yield return new WaitForSeconds(0.3f);
-            UIMenuHandler.instance.DisplayInitialDialogue();
-        }
-        else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == true)
-        {
-            ResetRotation();
-            OnOrderBeingPrepared.Raise(); //tells the doors to close
-            StartCoroutine(PrepareFood());
-        }
-        else if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == true)
-        {
-            FaceForward();
-            yield return new WaitForSeconds(0.3f);
-            UIMenuHandler.instance.DisplayDeliveryDialogue();
-        }
-        else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == false)
-        {
-            ResetRotation();
-            OnNestedChef.Raise(); //listened to by Doors
+            if (target == 0) LookBack(); //if character is walking back to door, flip x
+
+            //lerp inside of coroutine
+            while (elapsedTime < time)
+            {
+                Animate();
+                current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
+                transform.position = Vector3.Lerp(originalPosition, targetPosition, current);
+                elapsedTime += Time.deltaTime;
+
+                yield return null;
+            }
+
+            //positions the chef and triggers dialogue in order of sequence
+            if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == false)
+            {
+                FaceForward();
+                yield return new WaitForSeconds(0.3f);
+                UIMenuHandler.instance.DisplayInitialDialogue();
+            }
+            else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == true)
+            {
+                ResetRotation();
+                OnOrderBeingPrepared.Raise(); //tells the doors to close
+                StartCoroutine(PrepareFood());
+            }
+            else if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == true)
+            {
+                FaceForward();
+                yield return new WaitForSeconds(0.3f);
+                UIMenuHandler.instance.DisplayDeliveryDialogue();
+            }
+            else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == false)
+            {
+                ResetRotation();
+                OnNestedChef.Raise(); //listened to by Doors
+            }
         }
     }
 
@@ -98,27 +102,7 @@ public abstract class Chef : MonoBehaviour
     }
 
     //ABSTRACTION - Handles animation states
-    protected void Animate()
-    {
-        if (transform.position == originalPosition)
-        {
-            anim.SetBool("Static_b", true);
-            anim.SetFloat("Speed_f", 0);
-            anim.SetInteger("Animation_int", 0);
-        }
-        else if (transform.position == targetPosition)
-        {
-            anim.SetBool("Static_b", true);
-            anim.SetFloat("Speed_f", 0);
-            anim.SetInteger("Animation_int", 2);
-        }
-        else
-        {
-            anim.SetBool("Static_b", false);
-            anim.SetFloat("Speed_f", 0.3f);
-            anim.SetInteger("Animation_int", 0);
-        }
-    }
+    protected abstract void Animate();
 
     //ABSTRACTION - faces character forward once they've moved to center
     void FaceForward()

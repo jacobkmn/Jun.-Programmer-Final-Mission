@@ -11,6 +11,11 @@ GameObject:
   - component: {fileID: 4996274348295328}
   - component: {fileID: 95159503622219818}
   - component: {fileID: 2106005487961128630}
+  - component: {fileID: 979740999}
+  - component: {fileID: 979741002}
+  - component: {fileID: 979740998}
+  - component: {fileID: 979741005}
+  - component: {fileID: 979741003}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -66,6 +71,133 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9969752, y: 1.934731, z: 0.20136273}
   m_Center: {x: -0.019242883, y: 0.989161, z: -0.030736387}
+--- !u!114 &979740999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171144502545038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438f756cc861e423c98351322d9c93f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 1.1
+  selectedMaterial: {fileID: 2100000, guid: c7ba1f44961f316469701cf3fdfc5388, type: 2}
+  OnDoorClicked: {fileID: 11400000, guid: 494ecceb593b84bd0af4a296454b08b3, type: 2}
+--- !u!114 &979741002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171144502545038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 494ecceb593b84bd0af4a296454b08b3, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 979740999}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: DoorWasClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &979740998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171144502545038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 299bbd89a684344a2a1d22e4530058ee, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 979740999}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: ChefIsPreparingFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &979741005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171144502545038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9316eef41bb6d4ac9a4411bbf29eb358, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 979740999}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: CloseDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &979741003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171144502545038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0d4eae5b70b6b47efbbf4fa5b2e1c5e3, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 979740999}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: ResetDoors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1221432284963946
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c7ba1f44961f316469701cf3fdfc5388, type: 2}
+  - {fileID: 2100000, guid: 4a8fc35d32ebf4890a6b726b02dcc287, type: 2}
   - {fileID: 2100000, guid: 240eddb16eadaf24c9d4579b8966a8f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -222,7 +354,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c7ba1f44961f316469701cf3fdfc5388, type: 2}
+  - {fileID: 2100000, guid: 4a8fc35d32ebf4890a6b726b02dcc287, type: 2}
   - {fileID: 2100000, guid: 240eddb16eadaf24c9d4579b8966a8f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

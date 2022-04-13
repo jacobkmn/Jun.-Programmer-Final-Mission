@@ -21,11 +21,20 @@ public class FoodTextButton : MonoBehaviour
         RelaySelectedFood();
     }
 
+    //passes data to the Food Display class on which food the user ordered (clicked)
     void RelaySelectedFood()
     {
-        if (designatedFoodItem.text == "Chocolate Chip" || designatedFoodItem.text == "Chocolate Chip")
+        if (designatedFoodItem.text == "Chocolate Chip" || designatedFoodItem.text == "Oatmeal Raisin")
         {
             FoodDisplay.instance.SelectedFood = "Cookie";
+        }
+        else if (designatedFoodItem.text == "Turkey Avocado Melt" || designatedFoodItem.text == "BLT")
+        {
+            FoodDisplay.instance.SelectedFood = "Sandwich";
+        }
+        else if (designatedFoodItem.text == "Slice o' Pizza")
+        {
+            FoodDisplay.instance.SelectedFood = "Pizza";
         }
         else
             FoodDisplay.instance.SelectedFood = designatedFoodItem.text;

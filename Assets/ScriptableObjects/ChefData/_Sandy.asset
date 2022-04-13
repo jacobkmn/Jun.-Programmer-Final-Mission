@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f814c75a22047e4933f105244ee15d, type: 3}
+  m_Name: _Sandy
+  m_EditorClassIdentifier: 
+  designatedDoor: 1
+  designatedImage: {fileID: 21300000, guid: ee902ccea918c408399c80d9cf18d288, type: 3}
+  initialDialogueOptions:
+  - '"What''s up baby, watchu want?"'
+  - '"Hot and ready, you just in time."'
+  - '"Let Sandy warm you right up."'
+  responseDialogueOptions:
+  - '"I got you."'
+  - '"Be right back."'
+  deliveryDialogueOptions:
+  - '"There you go baby."'
+  - '"Enjoy hun, and be safe now."'
+  availableFoodNames:
+  - Slice o' Pizza
+  - Turkey Avocado Melt
+  - BLT
+  availableFood:
+  - {fileID: 100000, guid: 06cdf427476835b42837c1ca7f8cdbd1, type: 3}
+  - {fileID: 100000, guid: 5b10c1fadcedc4347b929c94cb50d5d3, type: 3}

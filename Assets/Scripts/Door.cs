@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] DoorData doorData;
+
     Animator anim;
     [SerializeField] float scaleMultiplier = 1.1f;
     Vector3 originalScale;
@@ -57,6 +59,7 @@ public class Door : MonoBehaviour
     {
         if (!IsSelected && !IsFrozen)
         {
+            DoorHandler.instance.DoorSelected = doorData.doorPosition.ToString();
             anim.SetBool("DoorTriggered", true);
             IsSelected = true;
             OnDoorClicked.Raise();
@@ -71,26 +74,38 @@ public class Door : MonoBehaviour
 
     public void ChefIsPreparingFood()
     {
-        StartCoroutine(DoorSwing());
+        if (IsSelected && IsFrozen)
+        {
+            StartCoroutine(DoorSwing());
+        }
     }
 
     IEnumerator DoorSwing()
     {
-        if (IsSelected && IsFrozen)
-        {
-            anim.SetBool("DoorTriggered", false);
-        }
+        CloseDoor();
 
         yield return new WaitForSeconds(5);
 
         anim.SetBool("DoorTriggered", true);
     }
 
+    public void CloseDoor()
+    {
+        if (IsSelected && IsFrozen)
+        {
+            anim.SetBool("DoorTriggered", false);
+        }
+    }
+
     public void ResetDoors()
     {
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(1);
         IsFrozen = false;
         IsSelected = false;
-        anim.SetBool("DoorTriggered", false);
-
     }
 }

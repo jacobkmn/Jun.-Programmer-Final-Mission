@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 452110}
   - component: {fileID: 3368220}
   - component: {fileID: 2355928}
+  - component: {fileID: -4702438331384867089}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Apple
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126446}
   m_LocalRotation: {x: -0.16231142, y: 0.78862274, z: -0.11955703, w: 0.5808919}
-  m_LocalPosition: {x: 0, y: 1.25, z: -3.751}
+  m_LocalPosition: {x: 0, y: 1.5, z: -5.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-4702438331384867089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a28834093a834a9faa2e921011d493d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnFoodEaten: {fileID: 11400000, guid: 0d4eae5b70b6b47efbbf4fa5b2e1c5e3, type: 2}

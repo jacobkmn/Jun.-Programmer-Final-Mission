@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Chef Data", menuName = "Chef Data")]
 public class ChefData : ScriptableObject
 {
+    public enum DesignatedDoor { left, middle, right };
+    public DesignatedDoor designatedDoor;
+
     [SerializeField] Sprite designatedImage;
     public Sprite DesignatedImage
     {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 403672}
   - component: {fileID: 3367966}
   - component: {fileID: 2309664}
+  - component: {fileID: -9142452274463256940}
   m_Layer: 0
   m_Name: Pear
   m_TagString: Pear
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120208}
   m_LocalRotation: {x: -0.27882674, y: 0.039931197, z: 0.13602516, w: 0.94982016}
-  m_LocalPosition: {x: 0, y: 1.288, z: -3.751}
+  m_LocalPosition: {x: 0, y: 1.5, z: -5.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-9142452274463256940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a28834093a834a9faa2e921011d493d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnFoodEaten: {fileID: 11400000, guid: 0d4eae5b70b6b47efbbf4fa5b2e1c5e3, type: 2}
