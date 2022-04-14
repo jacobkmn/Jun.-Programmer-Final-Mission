@@ -15,15 +15,17 @@ MonoBehaviour:
   designatedDoor: 2
   designatedImage: {fileID: 21300000, guid: f87114d4d88c643efa73826e983624d0, type: 3}
   initialDialogueOptions:
-  - '"What''ll it be honey?'
+  - '"Hi honey. What you like?"'
   - '"A fresh batch just came out the oven!"'
-  - '"Oy mijo, you so skinny. Here, take a cookie."'
+  - '"Oy mijo, you so skinny. Take a cookie."'
   responseDialogueOptions:
-  - '"I''ll be right back."'
-  - '"Just a minute."'
+  - '"Oke I get for you."'
+  - '"You gonna love it."'
+  - '"Sure."'
   deliveryDialogueOptions:
   - '"Enjoy mijo!"'
   - '"Here you go sweetie."'
+  - '"This one special, just for you."'
   availableFoodNames:
   - Chocolate Chip
   - Oatmeal Raisin

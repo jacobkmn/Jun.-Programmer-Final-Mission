@@ -12,9 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f814c75a22047e4933f105244ee15d, type: 3}
   m_Name: _Fred
   m_EditorClassIdentifier: 
-  designatedImage: {fileID: 0}
-  initialDialogueOptions: []
-  responseDialogueOptions: []
-  deliveryDialogueOptions: []
-  availableFoodNames: []
-  availableFood: []
+  designatedDoor: 0
+  designatedImage: {fileID: 21300000, guid: 989fffaf9b48547a194ad59e23ed552f, type: 3}
+  initialDialogueOptions:
+  - '"Howdy. Hows about a healthy snack?"'
+  - '"Pickings are fresh from the farm."'
+  - '"My wife Pat helped me harvest these just this morning!"'
+  responseDialogueOptions:
+  - '"Some all-natural-goodness coming right up."'
+  - '"You got it bucko!"'
+  - '"Let me grab that for you."'
+  deliveryDialogueOptions:
+  - '"Pleasure to see you. Come by anytime."'
+  - '"Here you are. Don''t be a stranger."'
+  - '"Whew. These knees aint what they used to be."'
+  availableFoodNames:
+  - Apple
+  - Banana
+  - Pear
+  availableFood:
+  - {fileID: 126446, guid: c2f4b43f266dc11439efef86830dafb4, type: 3}
+  - {fileID: 1180137445707430, guid: 84cd279dfc9ea0a4b8564030182915fa, type: 3}
+  - {fileID: 120208, guid: 4949a22a2c444b0459d7289aae77be28, type: 3}

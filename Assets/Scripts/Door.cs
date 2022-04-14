@@ -97,6 +97,7 @@ public class Door : MonoBehaviour
         }
     }
 
+    //Response to OnFoodEaten event in Food class
     public void ResetDoors()
     {
         StartCoroutine(Reset());
@@ -104,7 +105,11 @@ public class Door : MonoBehaviour
 
     IEnumerator Reset()
     {
-        yield return new WaitForSeconds(1);
+        WaitUntil chefNested = new WaitUntil(() => ChefReader.instance.ChefNested);
+        yield return chefNested;
+
+        yield return new WaitForSeconds(1.25f);
+
         IsFrozen = false;
         IsSelected = false;
     }

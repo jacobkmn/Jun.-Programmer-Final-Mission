@@ -37,12 +37,12 @@ public abstract class Chef : MonoBehaviour
         target = target == 0 ? 1 : 0;
     }
 
-    //chef moves to center stage
+    //the chef behind the clicked door moves to center stage
     protected IEnumerator MoveChef(float time)
     {
         if (DoorHandler.instance.DoorSelected == chefData.designatedDoor.ToString())
         {
-            Debug.Log("Door selected: " + DoorHandler.instance.DoorSelected);
+            //Debug.Log("Door selected: " + DoorHandler.instance.DoorSelected);
             yield return new WaitForSeconds(1);
 
             float elapsedTime = 0;
@@ -64,24 +64,28 @@ public abstract class Chef : MonoBehaviour
             //positions the chef and triggers dialogue in order of sequence
             if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == false)
             {
+                ChefReader.instance.ChefNested = false;
                 FaceForward();
                 yield return new WaitForSeconds(0.3f);
                 UIMenuHandler.instance.DisplayInitialDialogue();
             }
             else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == true)
             {
+                ChefReader.instance.ChefNested = true;
                 ResetRotation();
                 OnOrderBeingPrepared.Raise(); //tells the doors to close
                 StartCoroutine(PrepareFood());
             }
             else if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == true)
             {
+                ChefReader.instance.ChefNested = false;
                 FaceForward();
                 yield return new WaitForSeconds(0.3f);
                 UIMenuHandler.instance.DisplayDeliveryDialogue();
             }
             else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == false)
             {
+                ChefReader.instance.ChefNested = true;
                 ResetRotation();
                 OnNestedChef.Raise(); //listened to by Doors
             }
@@ -101,7 +105,7 @@ public abstract class Chef : MonoBehaviour
         yield return null;
     }
 
-    //ABSTRACTION - Handles animation states
+    //POLYMORPHISM - Handles different animation states for each chef
     protected abstract void Animate();
 
     //ABSTRACTION - faces character forward once they've moved to center

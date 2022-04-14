@@ -7,6 +7,13 @@ public class ChefReader : MonoBehaviour
     public static ChefReader instance { get; private set; }
     public Chef currentChef { get; private set; }
 
+    bool chefNested;
+    public bool ChefNested
+    {
+        get { return chefNested; }
+        set { chefNested = value; }
+    }
+
     private void Awake()
     {
         instance = this;

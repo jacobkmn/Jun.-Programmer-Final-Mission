@@ -15,7 +15,7 @@ public class Carla : Chef
     public override void ChefSequence()
     {
             base.ChefSequence();
-            StartCoroutine(MoveChef(2.15f)); //moves chef to center stage
+            StartCoroutine(MoveChef(2.69f)); //moves chef to center stage
     }
 
     protected override void Animate()

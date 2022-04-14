@@ -15,7 +15,7 @@ public class Fred : Chef
     public override void ChefSequence()
     {
         base.ChefSequence();
-        StartCoroutine(MoveChef(2.15f)); //moves chef to center stage
+        StartCoroutine(MoveChef(4.30f)); //moves chef to center stage
     }
 
     protected override void Animate()
@@ -30,7 +30,7 @@ public class Fred : Chef
         {
             anim.SetBool("Static_b", true);
             anim.SetFloat("Speed_f", 0);
-            anim.SetInteger("Animation_int", 5);
+            anim.SetInteger("Animation_int", 0);
         }
         else
         {
@@ -39,4 +39,17 @@ public class Fred : Chef
             anim.SetInteger("Animation_int", 0);
         }
     }
+
+    //IEnumerator CheckWatch()
+    //{
+    //    while (transform.position == targetPosition)
+    //    {
+    //        anim.SetInteger("Animation_int", 0);
+    //        anim.SetBool("ToIdle", false);
+    //        yield return new WaitForSeconds(Random.Range(7, 12));
+    //        anim.SetInteger("Animation_int", 3);
+    //        yield return new WaitForSeconds(2);
+    //        anim.SetBool("ToIdle", true);
+    //    }
+    //}
 }

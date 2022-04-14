@@ -14,8 +14,8 @@ public class Sandy : Chef
     //POLYMORPHISM - each chef moves at dif pace and has dif dialogue options
     public override void ChefSequence()
     {
-            base.ChefSequence();
-            StartCoroutine(MoveChef(2.15f)); //moves chef to center stage
+        base.ChefSequence();
+        StartCoroutine(MoveChef(2.15f)); //moves chef to center stage
     }
 
     protected override void Animate()
@@ -44,7 +44,7 @@ public class Sandy : Chef
 
     IEnumerator Smoking()
     {
-        while(transform.position == targetPosition)
+        while (transform.position == targetPosition)
         {
             anim.SetBool("ToIdle", false);
             anim.SetTrigger("smoke");

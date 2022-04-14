@@ -21,9 +21,11 @@ MonoBehaviour:
   responseDialogueOptions:
   - '"I got you."'
   - '"Be right back."'
+  - '"No problem."'
   deliveryDialogueOptions:
   - '"There you go baby."'
-  - '"Enjoy hun, and be safe now."'
+  - '"Enjoy hun, we''ll see you soon."'
+  - '"Alright, you be safe now."'
   availableFoodNames:
   - Slice o' Pizza
   - Turkey Avocado Melt

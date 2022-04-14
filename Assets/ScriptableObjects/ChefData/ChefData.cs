@@ -8,6 +8,7 @@ public class ChefData : ScriptableObject
     public enum DesignatedDoor { left, middle, right };
     public DesignatedDoor designatedDoor;
 
+    [Header("Image")]
     [SerializeField] Sprite designatedImage;
     public Sprite DesignatedImage
     {
