@@ -36,11 +36,7 @@ public class Door : MonoBehaviour
         {
             transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
             IsHovering = true;
-            for (int i = 0; i < numberOfChildren; i++)
-            {
-                Renderer rend = transform.GetChild(i).gameObject.GetComponent<Renderer>();
-                rend.sharedMaterial = selectedMaterial;
-            }
+            HighlightDoor();
         }
     }
 
@@ -48,11 +44,7 @@ public class Door : MonoBehaviour
     {
         transform.localScale = originalScale;
         IsHovering = false;
-        for (int i = 0; i < numberOfChildren; i++)
-        {
-            Renderer rend = transform.GetChild(i).gameObject.GetComponent<Renderer>();
-            rend.sharedMaterial = originalMaterial;
-        }
+        RevertHighlightDoor();
     }
 
     void OnMouseDown()
@@ -61,7 +53,9 @@ public class Door : MonoBehaviour
         {
             DoorHandler.instance.DoorSelected = doorData.doorPosition.ToString();
             anim.SetBool("DoorTriggered", true);
+            IsHovering = false;
             IsSelected = true;
+            RevertHighlightDoor();
             OnDoorClicked.Raise();
         }
     }
@@ -70,6 +64,30 @@ public class Door : MonoBehaviour
     public void DoorWasClicked()
     {
         IsFrozen = true;
+    }
+
+    void HighlightDoor()
+    {
+        if (IsHovering)
+        {
+            for (int i = 0; i < numberOfChildren; i++)
+            {
+                Renderer rend = transform.GetChild(i).gameObject.GetComponent<Renderer>();
+                rend.sharedMaterial = selectedMaterial;
+            }
+        }
+    }
+
+    void RevertHighlightDoor()
+    {
+        if (!IsHovering)
+        {
+            for (int i = 0; i < numberOfChildren; i++)
+            {
+                Renderer rend = transform.GetChild(i).gameObject.GetComponent<Renderer>();
+                rend.sharedMaterial = originalMaterial;
+            }
+        }
     }
 
     public void ChefIsPreparingFood()
