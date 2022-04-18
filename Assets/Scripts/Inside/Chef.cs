@@ -66,7 +66,7 @@ public abstract class Chef : MonoBehaviour
             {
                 ChefReader.instance.ChefNested = false;
                 FaceForward();
-                yield return new WaitForSeconds(0.3f);
+                //yield return new WaitForSeconds(0.3f);
                 UIMenuHandler.instance.DisplayInitialDialogue();
             }
             else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == true)
@@ -80,7 +80,7 @@ public abstract class Chef : MonoBehaviour
             {
                 ChefReader.instance.ChefNested = false;
                 FaceForward();
-                yield return new WaitForSeconds(0.3f);
+                //yield return new WaitForSeconds(0.3f);
                 UIMenuHandler.instance.DisplayDeliveryDialogue();
             }
             else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == false)

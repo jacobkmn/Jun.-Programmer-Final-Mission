@@ -12,6 +12,7 @@ public class UIMenuHandler : MonoBehaviour
     public GameEvent OnDialogueEnd;
 
     [Header("Dialogue Bar")]
+    [SerializeField] Animator DialogueAnim;
     [SerializeField] Canvas DialogueBarCanvas;
     public Image DialogueBarImage;
     public Text DialogueBarText;
@@ -63,11 +64,14 @@ public class UIMenuHandler : MonoBehaviour
         DialogueBarText.text = InitialDialogueString();
         ActivateButtons();
         DialogueBarCanvas.gameObject.SetActive(true);
+        DialogueAnim.SetBool("Reveal", true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                DialogueAnim.SetBool("Reveal", false);
+                yield return new WaitForSeconds(0.33f); //the time it takes for animation to complete
                 DialogueBarCanvas.gameObject.SetActive(false);
                 FoodMenuAnimator.SetBool("Reveal_hand", true);
             }
@@ -81,11 +85,14 @@ public class UIMenuHandler : MonoBehaviour
         yield return new WaitForSeconds(1);
         DialogueBarText.text = ResponseDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
+        DialogueAnim.SetBool("Reveal", true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                DialogueAnim.SetBool("Reveal", false);
+                yield return new WaitForSeconds(0.33f);
                 DialogueBarCanvas.gameObject.SetActive(false);
                 OnOrderPlaced.Raise(); //starts chef sequence. Listener attached to chefs in inspector
                 orderBeingPlaced = true; //gets picked up by chef class, at bottom of MoveChef coroutine
@@ -100,13 +107,15 @@ public class UIMenuHandler : MonoBehaviour
         orderBeingPlaced = false;
         DialogueBarText.text = DeliveryDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
+        DialogueAnim.SetBool("Reveal", true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                LightBehavior.instance.Dim();
-                //animate the food display to move on the z-axis while the light is dimming
+                LightBehavior.instance.Dim(); //Dims light for food to be displayed
+                DialogueAnim.SetBool("Reveal", false);
+                yield return new WaitForSeconds(0.33f);
                 DialogueBarCanvas.gameObject.SetActive(false);
 
                 yield return new WaitForSeconds(1);
