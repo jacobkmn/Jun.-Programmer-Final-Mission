@@ -46,7 +46,7 @@ public class OutsideDoors : MonoBehaviour
     {
         if (isHovering)
         {
-            anim.SetBool("DoorTriggered", true);
+            anim.SetBool("OutsideDoorTriggered", true);
             OnOutsideDoorClicked.Raise();
             RevertHighlightDoor();
             isClicked = true;

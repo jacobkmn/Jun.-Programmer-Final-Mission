@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     Vector3 originalPosition;
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject doorTrigger;
-    [SerializeField] ParticleSystem ps;
     [SerializeField] Camera indoorCam;
 
     bool isFrozen;
@@ -52,17 +51,17 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DoorClickedSequence(Vector3 source, Vector3 target, float overTime)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4); //time it takes for door animation to complete (door opening)
 
         float startTime = Time.time;
         while(Time.time < startTime + overTime)
         {
-            ps.Play();
+            ParticleHandler.instance.WindRush.Play(); //could alternatively fire an event here
             outdoorCam.position = Vector3.Lerp(source, target, (Time.time - startTime) / overTime);
 
             yield return null;
         }
-        ps.Stop();
+        ParticleHandler.instance.WindRush.Stop();
         indoorCam.gameObject.SetActive(true);
         gameObject.SetActive(false);
         gameObject.transform.position = originalPosition;

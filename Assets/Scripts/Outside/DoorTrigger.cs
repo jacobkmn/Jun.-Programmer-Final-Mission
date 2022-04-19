@@ -20,6 +20,7 @@ public class DoorTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         isTriggered = true;
+        ParticleHandler.instance.SmokeStack.Stop();
         //Debug.Log("Doortrigger isTriggered = true");
     }
 }
