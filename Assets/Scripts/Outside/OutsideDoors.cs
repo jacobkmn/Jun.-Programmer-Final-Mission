@@ -9,6 +9,10 @@ public class OutsideDoors : MonoBehaviour
     Vector3 originalScale;
     int numberOfChildren;
     bool isHovering;
+    public bool IsHovering
+    {
+        get { return isHovering; }
+    }
     bool isClicked;
 
     Material originalMaterial;
@@ -47,7 +51,7 @@ public class OutsideDoors : MonoBehaviour
         if (isHovering)
         {
             anim.SetBool("OutsideDoorTriggered", true);
-            OnOutsideDoorClicked.Raise();
+            //OnOutsideDoorClicked.Raise();
             RevertHighlightDoor();
             isClicked = true;
             OnOutsideDoorClicked.Raise();

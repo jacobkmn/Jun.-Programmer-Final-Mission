@@ -5,45 +5,68 @@ using UnityEngine.UI;
 
 public class Instructions : MonoBehaviour
 {
-
     [SerializeField] Canvas InstructionsCanvas;
     [SerializeField] Image keys;
+    [SerializeField] Image mouse;
     [SerializeField] float timeUntil = 4f;
-
-    Vector3 startPosition;
-
     float timer;
+    bool playerGotTheHint;
+
+    OutsideDoors outsideDoors;
 
     private void Start()
     {
-        startPosition = Camera.main.transform.position;
+        outsideDoors = FindObjectOfType<OutsideDoors>();
         keys.gameObject.SetActive(false);
-        StartCoroutine(Timer());
+        mouse.gameObject.SetActive(false);
+        StartTimer();
     }
 
     private void Update()
     {
         //if the timer hasn't hit the time threshold and the player hasn't moved, give them a hint
-        if (timer > timeUntil && Camera.main.transform.position == startPosition)
+        if (timer > timeUntil && PlayerPosition.instance.AtStartPosition())
         {
             keys.gameObject.SetActive(true);
-            StopCoroutine(Timer());
-            timer = 0;
         }
-        else if (Camera.main.transform.position != startPosition)
+        else if (!PlayerPosition.instance.AtStartPosition())
         {
-            StopAllCoroutines();
             keys.gameObject.SetActive(false);
-            timer = 0;
         }
+        //timer is triggered fresh by the game event raised in the doortrigger class
+        if (timer > timeUntil && outsideDoors.IsHovering == false && DoorTrigger.instance.IsTriggered && !playerGotTheHint)
+        {
+            mouse.gameObject.SetActive(true);
+        }
+        else if (outsideDoors.IsHovering == true && DoorTrigger.instance.IsTriggered)
+        {
+            mouse.gameObject.SetActive(false);
+            playerGotTheHint = true;
+        }
+    }
+
+    public void StartTimer()
+    {
+        StartCoroutine(Timer());
     }
 
     IEnumerator Timer()
     {
-        while(true)
+        //Debug.Log("Timer Started");
+        timer = 0;
+        while (true)
         {
             timer += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void HideAllUI()
+    {
+        keys.gameObject.SetActive(false);
+        mouse.gameObject.SetActive(false);
+        StopCoroutine(Timer());
+        timer = 0;
+        //Debug.Log("Timer stopped");
     }
 }

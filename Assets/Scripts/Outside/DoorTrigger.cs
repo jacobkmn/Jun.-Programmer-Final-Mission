@@ -6,6 +6,8 @@ public class DoorTrigger : MonoBehaviour
 {
     public static DoorTrigger instance;
 
+    [SerializeField] GameEvent OnDoorTriggered;
+
     bool isTriggered;
     public bool IsTriggered
     {
@@ -20,6 +22,7 @@ public class DoorTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         isTriggered = true;
+        OnDoorTriggered.Raise();
         ParticleHandler.instance.SmokeStack.Stop();
         //Debug.Log("Doortrigger isTriggered = true");
     }
