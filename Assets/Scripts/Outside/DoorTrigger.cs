@@ -23,7 +23,6 @@ public class DoorTrigger : MonoBehaviour
     {
         isTriggered = true;
         OnDoorTriggered.Raise();
-        ParticleHandler.instance.SmokeStack.Stop();
         //Debug.Log("Doortrigger isTriggered = true");
     }
 }

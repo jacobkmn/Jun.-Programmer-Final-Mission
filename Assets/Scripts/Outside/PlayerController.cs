@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DoorClickedSequence(Vector3 source, Vector3 target, float overTime)
     {
+        AudioManager.instance.PlaySound("Outside_door");
+        AudioManager.instance.PlaySoundDelayed("Ghost", 1.5f);
         yield return new WaitForSeconds(4); //time it takes for door animation to complete (door opening)
 
         float startTime = Time.time;
@@ -75,7 +77,10 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+        Debug.Log("you're hungry silly");
         ParticleHandler.instance.WindRush.Stop();
+        ParticleHandler.instance.SmokeStack.Stop();
+        ParticleHandler.instance.Rain.Stop();
         indoorCam.gameObject.SetActive(true);
         gameObject.SetActive(false);
         gameObject.transform.position = originalPosition;

@@ -47,6 +47,18 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void PlaySoundDelayed(string name, float delay)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + name + "wasn't found!");
+            return;
+        }
+        s.source.PlayDelayed(delay);
+    }
+
     public void PauseSound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.source.isPlaying);

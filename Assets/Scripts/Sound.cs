@@ -19,4 +19,6 @@ public class Sound
 
     public AudioSource source;
 
+    //remember: playOnAwake only makes sense if an object is instantiated
+
 }
