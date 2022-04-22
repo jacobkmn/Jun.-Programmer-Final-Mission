@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
-        Debug.Log("you're hungry silly");
         ParticleHandler.instance.WindRush.Stop();
         ParticleHandler.instance.SmokeStack.Stop();
         ParticleHandler.instance.Rain.Stop();

@@ -16,6 +16,7 @@ public class UIMenuHandler : MonoBehaviour
     [SerializeField] Canvas DialogueBarCanvas;
     public Image DialogueBarImage;
     public Text DialogueBarText;
+    [SerializeField] Text enterHelperText;
 
     [Header("Food Menu")]
     public Animator FoodMenuAnimator;
@@ -65,6 +66,7 @@ public class UIMenuHandler : MonoBehaviour
         ActivateButtons();
         DialogueBarCanvas.gameObject.SetActive(true);
         DialogueAnim.SetBool("Reveal", true);
+        enterHelperText.gameObject.SetActive(true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
@@ -73,6 +75,7 @@ public class UIMenuHandler : MonoBehaviour
                 DialogueAnim.SetBool("Reveal", false);
                 yield return new WaitForSeconds(0.33f); //the time it takes for animation to complete
                 DialogueBarCanvas.gameObject.SetActive(false);
+                enterHelperText.gameObject.SetActive(false);
                 FoodMenuAnimator.SetBool("Reveal_hand", true);
             }
             yield return null;
@@ -86,6 +89,7 @@ public class UIMenuHandler : MonoBehaviour
         DialogueBarText.text = ResponseDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
         DialogueAnim.SetBool("Reveal", true);
+        enterHelperText.gameObject.SetActive(true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
@@ -94,6 +98,7 @@ public class UIMenuHandler : MonoBehaviour
                 DialogueAnim.SetBool("Reveal", false);
                 yield return new WaitForSeconds(0.33f);
                 DialogueBarCanvas.gameObject.SetActive(false);
+                enterHelperText.gameObject.SetActive(false);
                 OnOrderPlaced.Raise(); //starts chef sequence. Listener attached to chefs in inspector
                 orderBeingPlaced = true; //gets picked up by chef class, at bottom of MoveChef coroutine
             }
@@ -108,6 +113,7 @@ public class UIMenuHandler : MonoBehaviour
         DialogueBarText.text = DeliveryDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
         DialogueAnim.SetBool("Reveal", true);
+        enterHelperText.gameObject.SetActive(true);
 
         while (DialogueBarCanvas.gameObject.activeInHierarchy == true)
         {
@@ -117,6 +123,7 @@ public class UIMenuHandler : MonoBehaviour
                 DialogueAnim.SetBool("Reveal", false);
                 yield return new WaitForSeconds(0.33f);
                 DialogueBarCanvas.gameObject.SetActive(false);
+                enterHelperText.gameObject.SetActive(false);
 
                 yield return new WaitForSeconds(1);
 

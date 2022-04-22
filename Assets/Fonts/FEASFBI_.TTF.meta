@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5f9e2845ca85d4395958fa4a31d95a0c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Feast of Flesh BB
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 569ffdd11a069426db7368a96e2cc7bb, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
