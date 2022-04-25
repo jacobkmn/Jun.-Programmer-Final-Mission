@@ -52,6 +52,9 @@ public class Instructions : MonoBehaviour
 
     IEnumerator Timer()
     {
+        WaitUntil waitForGameStart = new WaitUntil(() => GameManager.instance.GameStarted);
+        yield return waitForGameStart;
+
         //Debug.Log("Timer Started");
         timer = 0;
         while (true)

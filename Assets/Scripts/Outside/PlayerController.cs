@@ -25,18 +25,18 @@ public class PlayerController : MonoBehaviour
     {
         while (!isFrozen)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.UpArrow) && GameStarted())
             {
                 outdoorCam.position += Vector3.forward * moveSpeed * Time.deltaTime;
                 PlayerPosition.instance.IsMoving = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && GameStarted())
             {
                 AudioManager.instance.PlaySound("Walking");
                 //Debug.Log("Started Walking");
             }
-            else if (Input.GetKeyUp(KeyCode.UpArrow))
+            else if (Input.GetKeyUp(KeyCode.UpArrow) && GameStarted())
             {
                 AudioManager.instance.PauseSound("Walking");
                 PlayerPosition.instance.IsMoving = false;
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DoorClickedSequence(Vector3 source, Vector3 target, float overTime)
     {
-        AudioManager.instance.PlaySound("Outside_door");
+        AudioManager.instance.PlaySoundDelayed("Outside_door", 0.5f);
         AudioManager.instance.PlaySoundDelayed("Ghost", 1.5f);
         yield return new WaitForSeconds(4); //time it takes for door animation to complete (door opening)
 
@@ -83,5 +83,10 @@ public class PlayerController : MonoBehaviour
         indoorCam.gameObject.SetActive(true);
         gameObject.SetActive(false);
         gameObject.transform.position = originalPosition;
+    }
+
+    bool GameStarted()
+    {
+        return GameManager.instance.GameStarted;
     }
 }
