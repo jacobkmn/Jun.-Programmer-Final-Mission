@@ -20,14 +20,15 @@ public class UIMenuHandler : MonoBehaviour
 
     [Header("Food Menu")]
     public Animator FoodMenuAnimator;
+    [SerializeField] Canvas FoodMenuCanvas;
     [SerializeField] List<Text> FoodTextOptions;
     List<Transform> ActiveButtons = new List<Transform>();
 
     [Header("Food Display")]
-    [SerializeField] Image foodDisplayStar;
-    public Image FoodDisplayStar
+    [SerializeField] Canvas foodDisplayCanvas;
+    public Canvas FoodDisplayCanvas
     {
-        get { return foodDisplayStar; }
+        get { return foodDisplayCanvas; }
     }
 
     bool orderBeingPlaced;
@@ -76,6 +77,7 @@ public class UIMenuHandler : MonoBehaviour
                 yield return new WaitForSeconds(0.33f); //the time it takes for animation to complete
                 DialogueBarCanvas.gameObject.SetActive(false);
                 enterHelperText.gameObject.SetActive(false);
+                FoodMenuCanvas.gameObject.SetActive(true);
                 FoodMenuAnimator.SetBool("Reveal_hand", true);
             }
             yield return null;
@@ -86,6 +88,7 @@ public class UIMenuHandler : MonoBehaviour
     {
         FoodMenuAnimator.SetBool("Reveal_hand", false);
         yield return new WaitForSeconds(1);
+        FoodMenuCanvas.gameObject.SetActive(false);
         DialogueBarText.text = ResponseDialogueString();
         DialogueBarCanvas.gameObject.SetActive(true);
         DialogueAnim.SetBool("Reveal", true);
@@ -127,7 +130,7 @@ public class UIMenuHandler : MonoBehaviour
 
                 yield return new WaitForSeconds(1);
 
-                FoodDisplayStar.gameObject.SetActive(true);
+                foodDisplayCanvas.gameObject.SetActive(true);
                 FoodDisplay.instance.ActivateFood();
                 OnDialogueEnd.Raise(); //starts chef sequence. Listener attached to chef in inspector
             }

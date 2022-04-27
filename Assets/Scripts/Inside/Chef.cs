@@ -53,9 +53,10 @@ public abstract class Chef : MonoBehaviour
             //lerp inside of coroutine
             while (elapsedTime < time)
             {
-                Animate();
+                //Animate();
                 current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
                 transform.position = Vector3.Lerp(originalPosition, targetPosition, current);
+                Animate();
                 elapsedTime += Time.deltaTime;
 
                 yield return null;

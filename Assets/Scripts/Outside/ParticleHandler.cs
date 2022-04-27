@@ -16,17 +16,37 @@ public class ParticleHandler : MonoBehaviour
         get { return windRush; }
         set { WindRush = value; }
     }
+
     [SerializeField] ParticleSystem smokeStack;
-    public ParticleSystem SmokeStack
-    {
-        get { return smokeStack; }
-        set { SmokeStack = value; }
-    }
+    //public ParticleSystem SmokeStack
+    //{
+    //    get { return smokeStack; }
+    //    set { SmokeStack = value; }
+    //}
     [SerializeField] ParticleSystem rain;
-    public ParticleSystem Rain
+    //public ParticleSystem Rain
+    //{
+    //    get { return rain; }
+    //    set { rain = value; }
+    //}
+
+    public void ActivateWind()
     {
-        get { return rain; }
-        set { rain = value; }
+        windRush.gameObject.SetActive(true);
+    }
+    public void DeActivateWind()
+    {
+        windRush.gameObject.SetActive(false);
+    }
+    public void DeActivateSmoke()
+    {
+        smokeStack.Stop();
+        smokeStack.gameObject.SetActive(false);
+    }
+    public void DeActivateRain()
+    {
+        rain.Stop();
+        rain.gameObject.SetActive(false);
     }
 
 }

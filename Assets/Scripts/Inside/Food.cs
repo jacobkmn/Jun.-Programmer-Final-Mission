@@ -9,7 +9,7 @@ public class Food : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.SetActive(false);
-        UIMenuHandler.instance.FoodDisplayStar.gameObject.SetActive(false);
+        UIMenuHandler.instance.FoodDisplayCanvas.gameObject.SetActive(false);
         FoodDisplay.instance.DeActivateFood();
         LightBehavior.instance.Dim();
         OnFoodEaten.Raise();

@@ -9,18 +9,13 @@ public class GameManager : MonoBehaviour
     bool gameStarted;
     public bool GameStarted
     {
-        get { return GameStarted; }
-        set { GameStarted = value; }
+        get { return gameStarted; }
+        set { gameStarted = value; }
     }
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
+        instance = this;
 
         gameStarted = false;
     }

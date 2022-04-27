@@ -50,11 +50,12 @@ public class OutsideDoors : MonoBehaviour
     {
         if (isHovering)
         {
-            anim.SetBool("OutsideDoorTriggered", true);
-            //OnOutsideDoorClicked.Raise();
             RevertHighlightDoor();
             isClicked = true;
-            OnOutsideDoorClicked.Raise();
+            OnOutsideDoorClicked.Raise(); //starts DoorSequence coroutine in playercontroller, attached to OutsideCamera
+            anim.SetBool("OutsideDoorTriggered", true);
+            AudioManager.instance.PlaySoundDelayed("Outside_door", 0.5f);
+            AudioManager.instance.PlaySoundDelayed("Ghost", 1.5f);
         }
     }
 

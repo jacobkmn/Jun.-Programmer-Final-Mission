@@ -24,7 +24,7 @@ public class Sandy : Chef
         {
             anim.SetBool("Static_b", true);
             anim.SetFloat("Speed_f", 0);
-            anim.SetInteger("Animation_int", 0);
+            //anim.SetInteger("Animation_int", 0);
             StopCoroutine(Smoking());
         }
         else if (transform.position == targetPosition)
@@ -35,13 +35,14 @@ public class Sandy : Chef
         }
         else
         {
+            StopCoroutine(Smoking());
             anim.SetBool("Static_b", false);
             anim.SetFloat("Speed_f", 0.3f);
-            anim.SetInteger("Animation_int", 0);
-            StopCoroutine(Smoking());
+            //anim.SetInteger("Animation_int", 0);
         }
     }
 
+    //alternates between idle state, and taking a puff at random intervals
     IEnumerator Smoking()
     {
         while (transform.position == targetPosition)

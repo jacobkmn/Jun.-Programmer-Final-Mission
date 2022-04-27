@@ -14,6 +14,7 @@ public class StartButton : MonoBehaviour
         button.onClick.AddListener(OnButtonClicked);
     }
 
+    //fires off event for listeners to kick things off
     void OnButtonClicked() {
 
         OnStartButtonClicked.Raise();

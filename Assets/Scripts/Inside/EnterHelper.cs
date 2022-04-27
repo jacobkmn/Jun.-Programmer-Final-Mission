@@ -10,9 +10,14 @@ public class EnterHelper : MonoBehaviour
 {
     Text text;
     //inspector selectors for color change speed, dif colors, and string entry
-    [SerializeField] [Range(0f, 1f)] float lerpSpeed;
     [SerializeField] public Color[] colors;
     [SerializeField] string textToDisplay;
+    [SerializeField] [Range(0f, 1f)] float lerpSpeed;
+    public float LerpSpeed
+    {
+        get { return lerpSpeed; }
+        set { lerpSpeed = value; }
+    }
 
     //variables to cycle through index array
     int colorIndex = 0;
