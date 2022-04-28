@@ -63,13 +63,16 @@ public abstract class Chef : MonoBehaviour
             }
 
             //positions the chef and triggers dialogue in order of sequence
+            //chef is saying hello for the first time
             if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == false)
             {
                 ChefReader.instance.ChefNested = false;
+                AudioManager.instance.ChangeSource("BOH", gameObject);
                 FaceForward();
                 //yield return new WaitForSeconds(0.3f);
                 UIMenuHandler.instance.DisplayInitialDialogue();
             }
+            //chef is returning to kitchen to prepare order
             else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == true)
             {
                 ChefReader.instance.ChefNested = true;
@@ -77,6 +80,7 @@ public abstract class Chef : MonoBehaviour
                 OnOrderBeingPrepared.Raise(); //tells the doors to close
                 StartCoroutine(PrepareFood());
             }
+            //chef is bringing order out
             else if (target == 1 && UIMenuHandler.instance.OrderBeingPlaced == true)
             {
                 ChefReader.instance.ChefNested = false;
@@ -84,6 +88,7 @@ public abstract class Chef : MonoBehaviour
                 //yield return new WaitForSeconds(0.3f);
                 UIMenuHandler.instance.DisplayDeliveryDialogue();
             }
+            //chef is back to square one
             else if (target == 0 && UIMenuHandler.instance.OrderBeingPlaced == false)
             {
                 ChefReader.instance.ChefNested = true;
@@ -96,8 +101,9 @@ public abstract class Chef : MonoBehaviour
     //at this point, the user has clicked a food item on menu and chef has returned behind doors to prepare it
     protected IEnumerator PrepareFood()
     {
-        //AudioSource.play (audio of pots and plans clanging)
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.PlaySound("BOH");
+        yield return new WaitForSeconds(15);
 
         OnOrderReady.Raise();
         //chef listens to this in inspector and responds with chef sequence

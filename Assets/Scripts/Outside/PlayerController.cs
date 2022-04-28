@@ -14,7 +14,11 @@ public class PlayerController : MonoBehaviour
 
     bool isFrozen;
 
-    // Start is called before the first frame update
+    bool GameStarted()
+    {
+        return GameManager.instance.GameStarted;
+    }
+
     void Start()
     {
         outdoorCam = GetComponent<Transform>();
@@ -85,8 +89,22 @@ public class PlayerController : MonoBehaviour
         OnPlayerIsIndoors.Raise();
     }
 
-    bool GameStarted()
+
+
+
+    //endgame gets triggered when player clicks a UI door element (raises an event)
+    //this class listens to that event and startscoroutine(engame)
+
+
+
+
+    IEnumerator EndGame(Vector3 source, Vector3 target, float overTime)
     {
-        return GameManager.instance.GameStarted;
+        //sequence of player gettings sucked backwards out of the door
+        //light color fade to eerie green
+        //all chefs come out in a creepy way
+        yield return null;
     }
+
+
 }

@@ -51,10 +51,12 @@ public class Door : MonoBehaviour
     {
         if (!IsSelected && !IsFrozen)
         {
+            AudioManager.instance.ChangeSource("InsideDoors_open", gameObject);
+            //AudioManager.instance.ChangeSource("InsideDoors_close", gameObject);
             DoorHandler.instance.DoorSelected = doorData.doorPosition.ToString();
-            anim.SetBool("DoorTriggered", true);
             IsHovering = false;
             IsSelected = true;
+            OpenDoor();
             RevertHighlightDoor();
             OnDoorClicked.Raise();
         }
@@ -66,6 +68,7 @@ public class Door : MonoBehaviour
         IsFrozen = true;
     }
 
+    //highlight the children (both doors)
     void HighlightDoor()
     {
         if (IsHovering)
@@ -102,9 +105,9 @@ public class Door : MonoBehaviour
     {
         CloseDoor();
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(15);
 
-        anim.SetBool("DoorTriggered", true);
+        OpenDoor();
     }
 
     public void CloseDoor()
@@ -112,7 +115,15 @@ public class Door : MonoBehaviour
         if (IsSelected && IsFrozen)
         {
             anim.SetBool("DoorTriggered", false);
+            AudioManager.instance.ChangeClip("InsideDoors_close", gameObject);
+            AudioManager.instance.PlaySound("InsideDoors_close");
         }
+    }
+    public void OpenDoor()
+    {
+        anim.SetBool("DoorTriggered", true);
+        AudioManager.instance.ChangeClip("InsideDoors_open", gameObject);
+        AudioManager.instance.PlaySoundDelayed("InsideDoors_open", 0.5f);
     }
 
     //Response to OnFoodEaten event in Food class

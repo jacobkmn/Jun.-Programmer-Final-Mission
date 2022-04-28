@@ -8,6 +8,7 @@ public class Food : MonoBehaviour
 
     private void OnMouseDown()
     {
+        AudioManager.instance.PlaySound("Food_munch");
         gameObject.SetActive(false);
         UIMenuHandler.instance.FoodDisplayCanvas.gameObject.SetActive(false);
         FoodDisplay.instance.DeActivateFood();
