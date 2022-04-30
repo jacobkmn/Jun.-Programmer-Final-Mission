@@ -101,15 +101,30 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (s.source != null)
+        //first door clicked: sound has no source and neither does door
+        if (s.source == null && sourceObj.GetComponent<AudioSource>() == null)
         {
+            s.source = sourceObj.gameObject.AddComponent<AudioSource>();
+            s.source.enabled = true;
+        }
+        //if sound is already linked to a door's source, but a new door is clicked that doesn't yet have an audiosource
+        else if (s.source != null && sourceObj.GetComponent<AudioSource>() == null)
+        {
+            //disable the previous door's audiosource and reset the sound's source
             s.source.gameObject.GetComponent<AudioSource>().enabled = false;
             s.source = null;
-        }
-        if (s.source == null)
-        {
-            //figure out how to disable the audio source on the obj that's not in use
+            //the selected door becomes the new source
             s.source = sourceObj.gameObject.AddComponent<AudioSource>();
+            s.source.enabled = true;
+        }
+        //if another door is already the audiosource and the selected door has its own source
+        else if (s.source != null && sourceObj.GetComponent<AudioSource>() != null)
+        {
+            //disable the previous door's audiosource and reset the sound's source
+            s.source.gameObject.GetComponent<AudioSource>().enabled = false;
+            s.source = null;
+            //the selected door becomes the new source
+            s.source = sourceObj.GetComponent<AudioSource>();
             s.source.enabled = true;
         }
 

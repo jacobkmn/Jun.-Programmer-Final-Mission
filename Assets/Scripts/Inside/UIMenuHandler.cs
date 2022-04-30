@@ -138,8 +138,6 @@ public class UIMenuHandler : MonoBehaviour
         }
     }
 
-    //Probably going to run into a problem here of all chefs listening to ondialogueend simultaneously.
-    //Lets cross that bridge when we get there
     string InitialDialogueString()
     {
         return ChefReader.instance.currentChef.chefData.InitialDialogueOption;

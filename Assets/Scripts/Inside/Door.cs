@@ -32,7 +32,7 @@ public class Door : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (!IsSelected && !IsFrozen)
+        if (!IsSelected && !IsFrozen && !GameIsOver())
         {
             transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
             IsHovering = true;
@@ -49,7 +49,7 @@ public class Door : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!IsSelected && !IsFrozen)
+        if (!IsSelected && !IsFrozen && !GameIsOver())
         {
             AudioManager.instance.ChangeSource("InsideDoors_open", gameObject);
             //AudioManager.instance.ChangeSource("InsideDoors_close", gameObject);
@@ -141,5 +141,10 @@ public class Door : MonoBehaviour
 
         IsFrozen = false;
         IsSelected = false;
+    }
+
+    bool GameIsOver()
+    {
+        return GameManager.instance.GameOver;
     }
 }

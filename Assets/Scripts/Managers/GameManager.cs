@@ -13,6 +13,13 @@ public class GameManager : MonoBehaviour
         set { gameStarted = value; }
     }
 
+    bool gameOver;
+    public bool GameOver
+    {
+        get { return gameOver; }
+        set { gameOver = value; }
+    }
+
     private void Awake()
     {
         instance = this;
@@ -20,8 +27,12 @@ public class GameManager : MonoBehaviour
         gameStarted = false;
     }
 
-    public void StartGame()
+    public void MarkStartGame()
     {
         gameStarted = true;
+    }
+    public void MarkGameOver()
+    {
+        gameOver = gameOver == true ? false : true;
     }
 }

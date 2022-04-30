@@ -95,8 +95,10 @@ public class PlayerController : MonoBehaviour
     //endgame gets triggered when player clicks a UI door element (raises an event)
     //this class listens to that event and startscoroutine(engame)
 
-
-
+    public void OnEndGame()
+    {
+        StartCoroutine(EndGame(Camera.main.transform.position, originalPosition, 0.6f));
+    }
 
     IEnumerator EndGame(Vector3 source, Vector3 target, float overTime)
     {
