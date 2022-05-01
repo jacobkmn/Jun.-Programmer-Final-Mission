@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameEvent OnPlayerIsIndoors;
 
     Transform outdoorCam;
+    Animator camAnim;
     Vector3 originalPosition;
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject doorTrigger;
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         outdoorCam = GetComponent<Transform>();
+        camAnim = GetComponent<Animator>();
+        camAnim.enabled = false;
         originalPosition = outdoorCam.transform.position;
         StartCoroutine(MovePlayer());
     }
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.UpArrow) && GameStarted())
             {
+                AudioManager.instance.ChangeClip("Walking", Camera.main.gameObject);
                 AudioManager.instance.PlaySound("Walking");
                 //Debug.Log("Started Walking");
             }
@@ -54,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == doorTrigger)
+        if (other.gameObject == doorTrigger && !GameManager.instance.GameOver)
         {
             isFrozen = true;
             AudioManager.instance.StopSound("Walking");
@@ -89,24 +93,16 @@ public class PlayerController : MonoBehaviour
         OnPlayerIsIndoors.Raise();
     }
 
-
-
-
-    //endgame gets triggered when player clicks a UI door element (raises an event)
-    //this class listens to that event and startscoroutine(engame)
-
-    public void OnEndGame()
+    public void EndGameSequence()
     {
-        StartCoroutine(EndGame(Camera.main.transform.position, originalPosition, 0.6f));
+        StartCoroutine(Run());
     }
 
-    IEnumerator EndGame(Vector3 source, Vector3 target, float overTime)
+    IEnumerator Run()
     {
-        //sequence of player gettings sucked backwards out of the door
-        //light color fade to eerie green
-        //all chefs come out in a creepy way
-        yield return null;
+        camAnim.enabled = true;
+        yield return new WaitForSeconds(5.0f);
+
+        camAnim.SetTrigger("EndGame");
     }
-
-
 }

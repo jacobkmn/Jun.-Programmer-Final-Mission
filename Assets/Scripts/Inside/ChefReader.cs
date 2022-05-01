@@ -23,7 +23,7 @@ public class ChefReader : MonoBehaviour
     {
         currentChef = other.gameObject.GetComponent<Chef>();
         currentChef.IsActive = true;
-        print("Current chef is: " + currentChef);
+        //print("Current chef is: " + currentChef);
     }
 
     private void OnTriggerExit(Collider other)

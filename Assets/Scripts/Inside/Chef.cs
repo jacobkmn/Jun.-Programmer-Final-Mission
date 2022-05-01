@@ -98,6 +98,26 @@ public abstract class Chef : MonoBehaviour
         }
     }
 
+    protected IEnumerator EndGameMoveChef(float time, Vector3 targetPosition)
+    {
+        float elapsedTime = 0;
+        target = 1;
+
+        //lerp inside of coroutine
+        while (elapsedTime < time)
+        {
+            //Animate();
+            current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(originalPosition, targetPosition, current);
+            Animate();
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.LookAt(Camera.main.transform.position);
+    }
+
     //at this point, the user has clicked a food item on menu and chef has returned behind doors to prepare it
     protected IEnumerator PrepareFood()
     {
@@ -118,12 +138,12 @@ public abstract class Chef : MonoBehaviour
     //ABSTRACTION - faces character forward once they've moved to center
     void FaceForward()
     {
-            transform.LookAt(focalPoint.transform);
+        transform.LookAt(focalPoint.transform);
     }
 
     void ResetRotation()
     {
-            transform.rotation = originalRotation;
+        transform.rotation = originalRotation;
     }
 
     void LookBack()

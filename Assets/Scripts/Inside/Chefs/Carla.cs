@@ -18,6 +18,19 @@ public class Carla : Chef
             StartCoroutine(MoveChef(2.69f)); //moves chef to center stage
     }
 
+    public void EndGameChefSequence()
+    {
+        Vector3 offset = new Vector3(1.2f, 0,0);
+        targetPosition = targetDestination.transform.position + offset;
+        StartCoroutine(EndGameMoveChef(2.69f, targetPosition)); //moves chef to center stage
+    }
+    //triggered when player steps on outside door trigger
+    public void ItsAllOver()
+    {
+        if (GameManager.instance.GameOver)
+            StopAllCoroutines();
+    }
+
     protected override void Animate()
     {
         if (transform.position == originalPosition)

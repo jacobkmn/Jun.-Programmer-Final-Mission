@@ -30,13 +30,15 @@ public class AudioManager : MonoBehaviour
                 Debug.LogWarning("sound: " + s.name + ", does not have a source! Please add one in AudioManager");
                 //s.source = gameObject.AddComponent<AudioSource>();
             }
-
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-            s.source.spatialBlend = s.spatialBlend;
-            s.source.playOnAwake = s.playOnAwake;
+            else if (s.source != null)
+            {
+                s.source.clip = s.clip;
+                s.source.volume = s.volume;
+                s.source.pitch = s.pitch;
+                s.source.loop = s.loop;
+                s.source.spatialBlend = s.spatialBlend;
+                s.source.playOnAwake = s.playOnAwake;
+            }
         }
     }
 

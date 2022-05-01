@@ -58,7 +58,7 @@ public class MenuUIHandler : MonoBehaviour
         else
             eyesClosed = false;
 
-        eyesAnim.SetBool("Blink", blinkBool);
+        eyesAnim.SetBool("Blink", blinkBool); //if blinkBool is false, the "Eyes Opening" animation plays
 
         //hide the logo and start button
         logo.gameObject.SetActive(false);

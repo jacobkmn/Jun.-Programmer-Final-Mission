@@ -18,6 +18,19 @@ public class Sandy : Chef
         StartCoroutine(MoveChef(2.15f)); //moves chef to center stage
     }
 
+    public void EndGameChefSequence()
+    {
+        Vector3 offset = new Vector3(0, 0, 0);
+        targetPosition = targetDestination.transform.position - offset;
+        StartCoroutine(EndGameMoveChef(2.15f, targetPosition)); //moves chef to center stage
+    }
+    //triggered when player steps on outside door trigger
+    public void ItsAllOver()
+    {
+        if (GameManager.instance.GameOver)
+        StopAllCoroutines();
+    }
+
     protected override void Animate()
     {
         if (transform.position == originalPosition)
@@ -31,6 +44,7 @@ public class Sandy : Chef
         {
             anim.SetBool("Static_b", true);
             anim.SetFloat("Speed_f", 0);
+            if (!GameManager.instance.GameOver)
             StartCoroutine(Smoking());
         }
         else

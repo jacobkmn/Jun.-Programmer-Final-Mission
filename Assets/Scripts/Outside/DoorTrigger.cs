@@ -21,8 +21,11 @@ public class DoorTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        isTriggered = true;
-        OnDoorTriggered.Raise();
-        //Debug.Log("Doortrigger isTriggered = true");
+        if (!GameManager.instance.GameOver)
+        {
+            isTriggered = true;
+            OnDoorTriggered.Raise();
+            Debug.Log("Doortrigger isTriggered = true");
+        }
     }
 }

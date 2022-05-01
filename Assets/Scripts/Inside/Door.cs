@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] DoorData doorData;
+    [SerializeField] ParticleSystem doorSmoke;
 
     Animator anim;
     [SerializeField] float scaleMultiplier = 1.1f;
@@ -121,9 +122,17 @@ public class Door : MonoBehaviour
     }
     public void OpenDoor()
     {
-        anim.SetBool("DoorTriggered", true);
-        AudioManager.instance.ChangeClip("InsideDoors_open", gameObject);
-        AudioManager.instance.PlaySoundDelayed("InsideDoors_open", 0.5f);
+        if (GameManager.instance.GameOver)
+        {
+            anim.SetBool("DoorTriggered", true);
+            //start particle system
+        }
+        else
+        {
+            anim.SetBool("DoorTriggered", true);
+            AudioManager.instance.ChangeClip("InsideDoors_open", gameObject);
+            AudioManager.instance.PlaySoundDelayed("InsideDoors_open", 0.5f);
+        }
     }
 
     //Response to OnFoodEaten event in Food class

@@ -12,6 +12,10 @@ public class LightBehavior : MonoBehaviour
     float current, target;
     [SerializeField] Color[] EndGameLerp;
 
+    [Header("Game Events")]
+    [SerializeField] GameEvent OnLightsFlickering;
+    [SerializeField] GameEvent OnLightDoneFlickering;
+
     private void Awake()
     {
         instance = this;
@@ -55,8 +59,8 @@ public class LightBehavior : MonoBehaviour
 
     public void FlashingLights()
     {
-        StartCoroutine(LightFlicker(10.0f));
-        StartCoroutine(ColorLerp(10.0f));
+        StartCoroutine(LightFlicker(9.0f));
+        StartCoroutine(ColorLerp(9.0f));
     }
 
     //endgame sequence
@@ -64,6 +68,7 @@ public class LightBehavior : MonoBehaviour
     {
         //yield return new WaitForSeconds(1f);
         float startTime = Time.time;
+        int loopCount = 0;
 
         while (Time.time < startTime + timeFlickering )
         {
@@ -85,11 +90,17 @@ public class LightBehavior : MonoBehaviour
             // light intensity.
             sceneLight.intensity = sum / smoothing.Length;
 
-
+            //when flickering is about 3/4 of the way done, triggers door opening
+            if (loopCount == 8)
+            {
+                OnLightsFlickering.Raise();
+            }
+            loopCount++;
             yield return null;
         }
 
         sceneLight.intensity = originalIntensity - 0.5f;
+        OnLightDoneFlickering.Raise(); //triggers chefs to move to center-stage & playercontroller to start coroutine
     }
 
     IEnumerator ColorLerp(float overTime)
