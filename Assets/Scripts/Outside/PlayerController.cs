@@ -108,10 +108,10 @@ public class PlayerController : MonoBehaviour
         camAnim.enabled = true;
         ParticleHandler.instance.Rain.Play();
         yield return new WaitForSeconds(5.0f); //time it takes for chefs to come center stage
-        OnPlayerIsRunning.Raise();
+        OnPlayerIsRunning.Raise(); //gets picked up by particlehandler to render the rain and smoke
         camAnim.SetTrigger("EndGame");
-        yield return new WaitForSeconds(6.5f); //seconds until player "falls" in the animation
+        yield return new WaitForSeconds(6.1f); //seconds until player "falls" in the animation
         OnPlayerHasFallen.Raise(); //triggers event for MenuUI to blink
-        Debug.Log("player has fallen");
+        //Debug.Log("player has fallen");
     }
 }

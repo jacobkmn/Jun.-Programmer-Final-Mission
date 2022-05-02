@@ -90,7 +90,7 @@ public class MenuUIHandler : MonoBehaviour
     //Renders the UI elements
     public void SetupBlinker()
     {
-        Debug.Log("Blink UI Rendered");
+        //Debug.Log("Blink UI Rendered");
         MenuCanvas.gameObject.SetActive(true);
         eyesAnim.gameObject.SetActive(true);
         eyesAnim.enabled = true;
