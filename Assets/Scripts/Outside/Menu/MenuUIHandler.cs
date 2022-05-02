@@ -85,4 +85,23 @@ public class MenuUIHandler : MonoBehaviour
 
         OnEyesOpen.Raise();
     }
+
+    //response to OnPlayerIsRunning triggered in PlayerController
+    //Renders the UI elements
+    public void SetupBlinker()
+    {
+        Debug.Log("Blink UI Rendered");
+        MenuCanvas.gameObject.SetActive(true);
+        eyesAnim.gameObject.SetActive(true);
+        eyesAnim.enabled = true;
+    }
+
+    //response to OnPlayerHasFallen triggered in PlayerController
+    //UI "blinks" and game is reset
+    public void EndGameBlink()
+    {
+        Debug.Log("Blink");
+        
+        eyesAnim.SetTrigger("Blink_endgame");
+    }
 }

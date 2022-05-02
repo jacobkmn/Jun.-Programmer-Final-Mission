@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] GameEvent OnPlayerIsIndoors;
-
     Transform outdoorCam;
     Animator camAnim;
     Vector3 originalPosition;
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject doorTrigger;
     [SerializeField] Camera indoorCam;
+
+    [Header("Game Events")]
+    [SerializeField] GameEvent OnPlayerIsIndoors;
+    [SerializeField] GameEvent OnPlayerIsRunning;
+    [SerializeField] GameEvent OnPlayerHasFallen;
 
     bool isFrozen;
 
@@ -69,7 +72,7 @@ public class PlayerController : MonoBehaviour
     public void OnDoorClicked()
     {
         isFrozen = false;
-        StartCoroutine(DoorClickedSequence(outdoorCam.position, indoorCam.transform.position, 0.6f));
+        StartCoroutine(DoorClickedSequence(outdoorCam.position, indoorCam.transform.position, 0.45f));
     }
 
     IEnumerator DoorClickedSequence(Vector3 source, Vector3 target, float overTime)
@@ -85,14 +88,16 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         ParticleHandler.instance.WindRush.Stop();
+        ParticleHandler.instance.Rain.Stop();
         indoorCam.gameObject.SetActive(true);
         gameObject.SetActive(false);
-        gameObject.transform.position = originalPosition;
+        //gameObject.transform.position = originalPosition;
 
         yield return new WaitForSeconds(1);
         OnPlayerIsIndoors.Raise();
     }
 
+    //triggered by OnLightDoneFlickering game event in inspector. Comes from LightBehavior Class
     public void EndGameSequence()
     {
         StartCoroutine(Run());
@@ -101,8 +106,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator Run()
     {
         camAnim.enabled = true;
-        yield return new WaitForSeconds(5.0f);
-
+        ParticleHandler.instance.Rain.Play();
+        yield return new WaitForSeconds(5.0f); //time it takes for chefs to come center stage
+        OnPlayerIsRunning.Raise();
         camAnim.SetTrigger("EndGame");
+        yield return new WaitForSeconds(6.5f); //seconds until player "falls" in the animation
+        OnPlayerHasFallen.Raise(); //triggers event for MenuUI to blink
+        Debug.Log("player has fallen");
     }
 }

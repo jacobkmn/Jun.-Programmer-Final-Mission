@@ -29,7 +29,7 @@ public class FoodDisplay : MonoBehaviour
     {
         if (other.tag == "Chef")
         {
-            print("detected object: " + other.gameObject.name);
+            //print("detected object: " + other.gameObject.name);
             availableChefs.Add(other.gameObject);
         }
         //print("availableChefs: " + availableChefs);

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        gameStarted = false;
+        gameStarted = true; //change this back to false after testing
     }
 
     public void MarkStartGame()

@@ -55,7 +55,7 @@ public class UIEndGame : MonoBehaviour
         }
         canvasGroup.alpha = targetAlpha;
 
-        if (gate == 1) //Player selected to exit game
+        if (gate == 1) //Player selected to exit game, linked to Terminate function below
         {
             EndGameCanvas.gameObject.SetActive(false);
             OnExitGame.Raise();
