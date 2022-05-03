@@ -29,6 +29,11 @@ public class OutsideDoors : MonoBehaviour
         originalMaterial = transform.GetComponentInChildren<Renderer>().sharedMaterial;
     }
 
+    public void CloseOutsideDoors()
+    {
+        anim.SetBool("OutsideDoorTriggered", false);
+    }
+
     void OnMouseOver()
     {
         if (DoorTrigger.instance.IsTriggered && !isClicked)

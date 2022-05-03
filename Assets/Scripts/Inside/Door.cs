@@ -6,6 +6,8 @@ public class Door : MonoBehaviour
 {
     [SerializeField] DoorData doorData;
     [SerializeField] ParticleSystem doorSmoke;
+    [SerializeField] AudioClip designatedClip;
+    AudioSource audioSource;
 
     Animator anim;
     [SerializeField] float scaleMultiplier = 1.1f;
@@ -124,8 +126,23 @@ public class Door : MonoBehaviour
     {
         if (GameManager.instance.GameOver)
         {
+            if (GetComponent<AudioSource>() == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            else if (GetComponent<AudioSource>() != null)
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
+            audioSource.clip = designatedClip;
+            audioSource.volume = 0.7f;
+            audioSource.loop = false;
+            audioSource.spatialBlend = 0.95f;
+            
             anim.SetBool("DoorTriggered", true);
+            audioSource.PlayDelayed(0.5f);
             //start particle system
+            StartCoroutine(RemoveAudioSource());
         }
         else
         {
@@ -155,5 +172,18 @@ public class Door : MonoBehaviour
     bool GameIsOver()
     {
         return GameManager.instance.GameOver;
+    }
+
+    IEnumerator RemoveAudioSource()
+    {
+        yield return new WaitForSeconds(1);
+
+        Destroy(GetComponent<AudioSource>());
+    }
+
+    //used when OnRestartGame is triggered after endgame sequence
+    public void RestartGame()
+    {
+        anim.SetBool("DoorTriggered", false);
     }
 }

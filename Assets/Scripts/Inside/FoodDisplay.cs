@@ -46,6 +46,11 @@ public class FoodDisplay : MonoBehaviour
         StartCoroutine(SpawnAvailableFood());
     }
 
+    public void Reset()
+    {
+        PooledFood.Clear();
+    }
+
     IEnumerator SpawnAvailableFood()
     {
         WaitUntil waitForChefs = new WaitUntil(() => chefsAccountedFor);

@@ -22,13 +22,30 @@ public class MenuUIHandler : MonoBehaviour
     [SerializeField] Animator noticeAnim;
     [SerializeField] GameObject PressEnterText;
 
-    private void Start()
+    private void Start() //initializes start of game
     {
+        NoticeCanvas.gameObject.SetActive(true);
         MenuCanvas.gameObject.SetActive(false);
-        StartCoroutine(WaitForInput());
+        StartCoroutine(WaitForInput()); //waits for user to click return key to fade out the start-game notice message
     }
 
-    //Fade the notice message when player presses enter
+    public void Reset() //resets the game
+    {
+        NoticeCanvas.gameObject.SetActive(false);
+        MenuCanvas.gameObject.SetActive(true);
+        blurImage.SetActive(true);
+        logo.gameObject.SetActive(true);
+        startButton.gameObject.SetActive(true);
+        StartCoroutine(DelayedReset());
+    }
+
+    IEnumerator DelayedReset()
+    {
+        yield return new WaitForSeconds(3); //controls how long the "eyes stay closed" before start menu displays
+        eyesAnim.SetTrigger("Reset");
+    }
+
+    //Fade the notice message when player presses enter and display the start menu
     IEnumerator WaitForInput()
     {
         yield return new WaitForSeconds(2);
@@ -82,7 +99,7 @@ public class MenuUIHandler : MonoBehaviour
 
         eyesClosed = false;
         yield return new WaitForSeconds(4.5f);
-
+        //eyesAnim.enabled = false;
         OnEyesOpen.Raise();
     }
 
@@ -100,8 +117,6 @@ public class MenuUIHandler : MonoBehaviour
     //UI "blinks" and game is reset
     public void EndGameBlink()
     {
-        Debug.Log("Blink");
-        
-        eyesAnim.SetTrigger("Blink_endgame");
+        eyesAnim.SetTrigger("Blink_endgame_start");
     }
 }

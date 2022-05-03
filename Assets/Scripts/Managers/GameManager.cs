@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        gameStarted = true; //change this back to false after testing
+        gameStarted = false; //change this back to false after testing
     }
 
     public void MarkStartGame()
@@ -34,5 +34,10 @@ public class GameManager : MonoBehaviour
     public void MarkGameOver()
     {
         gameOver = gameOver == true ? false : true;
+    }
+
+    public void ResetGame()
+    {
+        gameStarted = false;
     }
 }

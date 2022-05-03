@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     Transform outdoorCam;
     Animator camAnim;
     Vector3 originalPosition;
+    Quaternion originalRotation;
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject doorTrigger;
     [SerializeField] Camera indoorCam;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameEvent OnPlayerIsIndoors;
     [SerializeField] GameEvent OnPlayerIsRunning;
     [SerializeField] GameEvent OnPlayerHasFallen;
+    [SerializeField] GameEvent OnRestartGame;
 
     bool isFrozen;
 
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         camAnim = GetComponent<Animator>();
         camAnim.enabled = false;
         originalPosition = outdoorCam.transform.position;
+        originalRotation = outdoorCam.transform.rotation;
         StartCoroutine(MovePlayer());
     }
 
@@ -72,7 +75,7 @@ public class PlayerController : MonoBehaviour
     public void OnDoorClicked()
     {
         isFrozen = false;
-        StartCoroutine(DoorClickedSequence(outdoorCam.position, indoorCam.transform.position, 0.45f));
+        StartCoroutine(DoorClickedSequence(outdoorCam.position, indoorCam.transform.position, 0.5f));
     }
 
     IEnumerator DoorClickedSequence(Vector3 source, Vector3 target, float overTime)
@@ -89,9 +92,9 @@ public class PlayerController : MonoBehaviour
         }
         ParticleHandler.instance.WindRush.Stop();
         ParticleHandler.instance.Rain.Stop();
-        indoorCam.gameObject.SetActive(true);
+        indoorCam.gameObject.SetActive(true); //swap rendering camera
         gameObject.SetActive(false);
-        //gameObject.transform.position = originalPosition;
+        LightBehavior.instance.MoonLight.gameObject.SetActive(false); 
 
         yield return new WaitForSeconds(1);
         OnPlayerIsIndoors.Raise();
@@ -110,8 +113,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(5.0f); //time it takes for chefs to come center stage
         OnPlayerIsRunning.Raise(); //gets picked up by particlehandler to render the rain and smoke
         camAnim.SetTrigger("EndGame");
-        yield return new WaitForSeconds(6.1f); //seconds until player "falls" in the animation
-        OnPlayerHasFallen.Raise(); //triggers event for MenuUI to blink
-        //Debug.Log("player has fallen");
+        yield return new WaitForSeconds(6.125f); //seconds until player "falls" in the animation
+        OnPlayerHasFallen.Raise(); //triggers event for MenuUI to start blink_endgame animation
+
+        yield return new WaitForSeconds(5.0f);
+        camAnim.enabled = false;
+        outdoorCam.transform.position = originalPosition;
+        outdoorCam.transform.rotation = originalRotation;
+        StartCoroutine(MovePlayer());
+        OnRestartGame.Raise(); //widespread message for many components to re-initialize for another playthrough
     }
 }

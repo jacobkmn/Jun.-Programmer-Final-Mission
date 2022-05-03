@@ -7,6 +7,11 @@ public class LightBehavior : MonoBehaviour
     public static LightBehavior instance;
 
     [SerializeField] Light sceneLight;
+    [SerializeField] Light moonLight;
+    public Light MoonLight
+    {
+        get { return moonLight; }
+    }
 
     float originalIntensity, targetIntensity;
     float current, target;
@@ -16,13 +21,13 @@ public class LightBehavior : MonoBehaviour
     [SerializeField] GameEvent OnLightsFlickering;
     [SerializeField] GameEvent OnLightDoneFlickering;
 
+    // Array of random values dictate intensity of flicker. Smaller the array = more flickering
+    private float[] smoothing = new float[9];
+
     private void Awake()
     {
         instance = this;
     }
-
-    // Array of random values for the intensity.
-    private float[] smoothing = new float[9];
 
     private void Start()
     {
@@ -34,6 +39,13 @@ public class LightBehavior : MonoBehaviour
         {
             smoothing[i] = .0f;
         }
+    }
+
+    public void Reset()
+    {
+        sceneLight.intensity = originalIntensity;
+        moonLight.gameObject.SetActive(true);
+        StopAllCoroutines();
     }
 
     public void Dim()
@@ -112,5 +124,10 @@ public class LightBehavior : MonoBehaviour
             sceneLight.color = Color.Lerp(EndGameLerp[0], EndGameLerp[1], (Time.time - startTime) / overTime);
             yield return null;
         }
+    }
+
+    public void RenderMoonlight()
+    {
+        moonLight.gameObject.SetActive(true);
     }
 }

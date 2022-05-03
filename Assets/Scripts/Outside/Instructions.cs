@@ -46,14 +46,15 @@ public class Instructions : MonoBehaviour
         }
     }
 
+    //triggered by OnOutsideDoorTriggered game event, check inspector
     public void StartTimer()
     {
         StartCoroutine(Timer());
     }
 
-    //Waits for GameManager to signal game started
     IEnumerator Timer()
     {
+        //Waits for GameManager to signal game started
         //WaitUntil waitForGameStart = new WaitUntil(() => GameManager.instance.GameStarted);
         //yield return waitForGameStart;
 

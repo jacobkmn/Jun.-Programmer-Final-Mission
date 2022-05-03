@@ -7,8 +7,14 @@ public class RenderManager : MonoBehaviour
     [SerializeField] GameObject[] NotRenderedOnAwake;
     [SerializeField] GameObject[] NotRenderedOnEyesOpen;
     [SerializeField] GameObject[] RenderedOnEyesOpen;
+    [SerializeField] GameObject[] NotRenderedWhenPlayerIsIndoors;
 
     private void Start()
+    {
+        InitialRender();
+    }
+
+    public void InitialRender()
     {
         foreach (GameObject item in NotRenderedOnAwake)
         {
@@ -31,4 +37,13 @@ public class RenderManager : MonoBehaviour
             item.SetActive(true);
         }
     }
+
+    public void TurnOffObjectsWhenIndoors()
+    {
+        foreach (GameObject item in NotRenderedWhenPlayerIsIndoors)
+        {
+            item.SetActive(false);
+        }
+    }
+
 }

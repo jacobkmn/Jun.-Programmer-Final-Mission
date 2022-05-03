@@ -1541,6 +1541,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325899097}
   m_CullTransparentMesh: 1
+--- !u!1 &328477641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328477642}
+  - component: {fileID: 328477645}
+  - component: {fileID: 328477644}
+  - component: {fileID: 328477646}
+  - component: {fileID: 328477643}
+  m_Layer: 0
+  m_Name: LightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &328477642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328477641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1840516993}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328477643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328477641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 328477645}
+        m_TargetAssemblyTypeName: LightBehavior, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &328477644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328477641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6d9e2a48111b94bbb8cfb253d42714d4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 328477645}
+        m_TargetAssemblyTypeName: LightBehavior, Assembly-CSharp
+        m_MethodName: FlashingLights
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &328477645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328477641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4229d42f821a491c9a74b7e437d1175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneLight: {fileID: 771577707}
+  moonLight: {fileID: 1919820229}
+  EndGameLerp:
+  - {r: 1, g: 0.9607843, b: 0.38039216, a: 0}
+  - {r: 0.38431373, g: 1, b: 0.47843137, a: 0}
+  OnLightsFlickering: {fileID: 11400000, guid: c4491ba1feb8747979d92c24ec36f840, type: 2}
+  OnLightDoneFlickering: {fileID: 11400000, guid: bb5bd4d7d79664f6db364af1d9001419, type: 2}
+--- !u!114 &328477646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328477641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: fc9e3921e188b4af4be5850b25a8cff8, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 328477645}
+        m_TargetAssemblyTypeName: LightBehavior, Assembly-CSharp
+        m_MethodName: RenderMoonlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &334593426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2470,34 @@ MonoBehaviour:
       - m_Target: {fileID: 430450333}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &430450330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430450328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 430450333}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7735,6 +7900,7 @@ MonoBehaviour:
   OnPlayerIsIndoors: {fileID: 11400000, guid: ae8e282124a5d4665a0b9d164b1a102c, type: 2}
   OnPlayerIsRunning: {fileID: 11400000, guid: fc9e3921e188b4af4be5850b25a8cff8, type: 2}
   OnPlayerHasFallen: {fileID: 11400000, guid: 1f8a75e8c49f641e782540944236f361, type: 2}
+  OnRestartGame: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
 --- !u!54 &568867318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13504,8 +13670,6 @@ GameObject:
   m_Component:
   - component: {fileID: 771577708}
   - component: {fileID: 771577707}
-  - component: {fileID: 771577709}
-  - component: {fileID: 771577710}
   m_Layer: 6
   m_Name: 'Interior Light '
   m_TagString: Untagged
@@ -13589,52 +13753,6 @@ Transform:
   m_Father: {fileID: 2068063264}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &771577709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771577706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4229d42f821a491c9a74b7e437d1175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneLight: {fileID: 771577707}
-  EndGameLerp:
-  - {r: 1, g: 0.9607843, b: 0.38039216, a: 0}
-  - {r: 0.38431373, g: 1, b: 0.47843137, a: 0}
-  OnLightsFlickering: {fileID: 11400000, guid: c4491ba1feb8747979d92c24ec36f840, type: 2}
-  OnLightDoneFlickering: {fileID: 11400000, guid: bb5bd4d7d79664f6db364af1d9001419, type: 2}
---- !u!114 &771577710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771577706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 6d9e2a48111b94bbb8cfb253d42714d4, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 771577709}
-        m_TargetAssemblyTypeName: LightBehavior, Assembly-CSharp
-        m_MethodName: FlashingLights
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &781730625
 GameObject:
   m_ObjectHideFlags: 0
@@ -18552,6 +18670,7 @@ GameObject:
   - component: {fileID: 826149410}
   - component: {fileID: 826149409}
   - component: {fileID: 826149411}
+  - component: {fileID: 826149412}
   m_Layer: 6
   m_Name: Food Pooler
   m_TagString: Untagged
@@ -18600,6 +18719,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 17.902859, y: 1, z: 10.806244}
   m_Center: {x: -1.9323215, y: 0, z: 2.0713196}
+--- !u!114 &826149412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826149408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 826149409}
+        m_TargetAssemblyTypeName: FoodDisplay, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &829408723
 GameObject:
   m_ObjectHideFlags: 0
@@ -19179,6 +19326,7 @@ GameObject:
   - component: {fileID: 948895966}
   - component: {fileID: 948895970}
   - component: {fileID: 948895969}
+  - component: {fileID: 948895971}
   m_Layer: 0
   m_Name: Menu UI
   m_TagString: Untagged
@@ -19299,6 +19447,34 @@ MonoBehaviour:
       - m_Target: {fileID: 948895967}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
         m_MethodName: SetupBlinker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &948895971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948895965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 948895967}
+        m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24821,6 +24997,10 @@ PrefabInstance:
       propertyPath: doorData
       value: 
       objectReference: {fileID: 11400000, guid: 82b4d6034c3724837a9c44d42e812163, type: 2}
+    - target: {fileID: 979740999, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
+      propertyPath: designatedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c50d4ed4999e64e69bf3331b8c2f1810, type: 3}
     - target: {fileID: 979741002, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -26405,6 +26585,8 @@ GameObject:
   - component: {fileID: 1404057202}
   - component: {fileID: 1404057203}
   - component: {fileID: 1404057204}
+  - component: {fileID: 1404057206}
+  - component: {fileID: 1404057205}
   m_Layer: 0
   m_Name: RenderManager
   m_TagString: Untagged
@@ -26457,6 +26639,11 @@ MonoBehaviour:
   - {fileID: 677919441}
   - {fileID: 1082995999}
   - {fileID: 2068063263}
+  NotRenderedWhenPlayerIsIndoors:
+  - {fileID: 258043303}
+  - {fileID: 1381242416}
+  - {fileID: 407422144}
+  - {fileID: 1919820227}
 --- !u!114 &1404057203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26504,6 +26691,62 @@ MonoBehaviour:
       - m_Target: {fileID: 1404057202}
         m_TargetAssemblyTypeName: RenderManager, Assembly-CSharp
         m_MethodName: TurnOffObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1404057205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404057200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1404057202}
+        m_TargetAssemblyTypeName: RenderManager, Assembly-CSharp
+        m_MethodName: InitialRender
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1404057206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404057200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ae8e282124a5d4665a0b9d164b1a102c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1404057202}
+        m_TargetAssemblyTypeName: RenderManager, Assembly-CSharp
+        m_MethodName: TurnOffObjectsWhenIndoors
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26928,6 +27171,7 @@ GameObject:
   - component: {fileID: 1549978442}
   - component: {fileID: 1549978443}
   - component: {fileID: 1549978444}
+  - component: {fileID: 1549978445}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -27008,6 +27252,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1549978442}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: MarkGameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1549978445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549978440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1549978442}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResetGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27102,6 +27374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1574326628}
   - component: {fileID: 1574326627}
+  - component: {fileID: 1574326629}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -27192,6 +27465,34 @@ Transform:
   m_Father: {fileID: 1840516993}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1574326629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574326626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1574326627}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1609185062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28223,6 +28524,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1736031218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5576064632369680272, guid: 19ee2c27ce2b54fda8c33f47b7900784, type: 3}
+  m_PrefabInstance: {fileID: 5576064630927139741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736031216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8566b10cfdee6426598d89fb6c184247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1736031219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736031216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1f8a75e8c49f641e782540944236f361, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1736031218}
+        m_TargetAssemblyTypeName: OutsideDoors, Assembly-CSharp
+        m_MethodName: CloseOutsideDoors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1750820390
 GameObject:
   m_ObjectHideFlags: 0
@@ -28383,6 +28723,34 @@ MonoBehaviour:
       - m_Target: {fileID: 754821296}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1785652520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785652518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 754821296}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28698,6 +29066,7 @@ Transform:
   - {fileID: 1574326628}
   - {fileID: 1549978441}
   - {fileID: 1404057201}
+  - {fileID: 328477642}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28821,6 +29190,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1855950613}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1855950610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855950608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be3a695d74a447f4a3cce147ab1167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 450f3fc9ef73d43f8b1028c8dba710a4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1855950613}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29027,6 +29424,10 @@ PrefabInstance:
       propertyPath: doorData
       value: 
       objectReference: {fileID: 11400000, guid: 1e56274b8fc5a45278f115f0383a59a4, type: 2}
+    - target: {fileID: 979740999, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
+      propertyPath: designatedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c50d4ed4999e64e69bf3331b8c2f1810, type: 3}
     - target: {fileID: 1171144502545038, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
       propertyPath: m_Name
       value: Doors Middle
@@ -30716,6 +31117,10 @@ PrefabInstance:
       propertyPath: doorData
       value: 
       objectReference: {fileID: 11400000, guid: 3967b9adcea514ab2aec7c7c832efb86, type: 2}
+    - target: {fileID: 979740999, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
+      propertyPath: designatedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c50d4ed4999e64e69bf3331b8c2f1810, type: 3}
     - target: {fileID: 1171144502545038, guid: 5c4c8dcc12aea744a8fd42b64f45aced, type: 3}
       propertyPath: m_Name
       value: Doors Right

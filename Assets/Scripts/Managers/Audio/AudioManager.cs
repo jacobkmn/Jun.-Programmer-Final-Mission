@@ -1,4 +1,5 @@
 using UnityEngine.Audio;
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     public Sound[] sounds;
+    private List<Sound> Sourceless = new List<Sound>();
 
     private void Awake()
     {
@@ -28,7 +30,7 @@ public class AudioManager : MonoBehaviour
             if (s.source == null)
             {
                 Debug.LogWarning("sound: " + s.name + ", does not have a source! Please add one in AudioManager");
-                //s.source = gameObject.AddComponent<AudioSource>();
+                Sourceless.Add(s); //adds sound to a list to be called on when the game is reset
             }
             else if (s.source != null)
             {
@@ -39,6 +41,14 @@ public class AudioManager : MonoBehaviour
                 s.source.spatialBlend = s.spatialBlend;
                 s.source.playOnAwake = s.playOnAwake;
             }
+        }
+    }
+
+    public void Reset()
+    {
+        foreach (Sound s in Sourceless)
+        {
+            s.source = null;
         }
     }
 
