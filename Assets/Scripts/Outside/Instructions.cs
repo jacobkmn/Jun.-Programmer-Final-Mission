@@ -8,7 +8,7 @@ public class Instructions : MonoBehaviour
     [SerializeField] Canvas InstructionsCanvas;
     [SerializeField] Image keys;
     [SerializeField] Image mouse;
-    [SerializeField] float timeUntil = 4f;
+    [SerializeField] float timeUntil = 3f;
     float timer;
     bool playerGotTheHint;
 
@@ -19,6 +19,14 @@ public class Instructions : MonoBehaviour
         outsideDoors = FindObjectOfType<OutsideDoors>();
         keys.gameObject.SetActive(false);
         mouse.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        keys.gameObject.SetActive(false);
+        mouse.gameObject.SetActive(false);
+        timer = 0;
+        playerGotTheHint = false;
     }
 
     private void Update()
@@ -69,8 +77,7 @@ public class Instructions : MonoBehaviour
 
     public void HideAllUI()
     {
-        keys.gameObject.SetActive(false);
-        mouse.gameObject.SetActive(false);
+        InstructionsCanvas.gameObject.SetActive(false);
         StopCoroutine(Timer());
         timer = 0;
         //Debug.Log("Timer stopped");

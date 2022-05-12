@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Detects all active chefs and registers a list of pooled "food" objects from the available food in the chef's scriptableobject dataset.
+/// Also enables the "ordered" food item when prompted.
+/// </summary>
 public class FoodDisplay : MonoBehaviour
 {
     public static FoodDisplay instance;
@@ -46,17 +50,12 @@ public class FoodDisplay : MonoBehaviour
         StartCoroutine(SpawnAvailableFood());
     }
 
-    public void Reset()
-    {
-        PooledFood.Clear();
-    }
-
     IEnumerator SpawnAvailableFood()
     {
         WaitUntil waitForChefs = new WaitUntil(() => chefsAccountedFor);
 
         yield return waitForChefs;
-        print("All chefs accounted for.");
+        //print("All chefs accounted for.");
 
         CalculateTotalFoodOptions();
 

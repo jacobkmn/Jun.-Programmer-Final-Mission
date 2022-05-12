@@ -38,11 +38,20 @@ public class RenderManager : MonoBehaviour
         }
     }
 
+    //turns off the outside elements as they are not seen by the indoor camera
     public void TurnOffObjectsWhenIndoors()
     {
         foreach (GameObject item in NotRenderedWhenPlayerIsIndoors)
         {
             item.SetActive(false);
+        }
+    }
+    //reverses the above method
+    public void RenderOutdoors()
+    {
+        foreach (GameObject item in NotRenderedWhenPlayerIsIndoors)
+        {
+            item.SetActive(true);
         }
     }
 

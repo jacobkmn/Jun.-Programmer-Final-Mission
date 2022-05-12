@@ -13,6 +13,7 @@ public class LightBehavior : MonoBehaviour
         get { return moonLight; }
     }
 
+    Color originalColor;
     float originalIntensity, targetIntensity;
     float current, target;
     [SerializeField] Color[] EndGameLerp;
@@ -32,6 +33,7 @@ public class LightBehavior : MonoBehaviour
     private void Start()
     {
         originalIntensity = sceneLight.intensity;
+        originalColor = sceneLight.color;
         targetIntensity = 1;
 
         // Initialize the array.
@@ -44,7 +46,8 @@ public class LightBehavior : MonoBehaviour
     public void Reset()
     {
         sceneLight.intensity = originalIntensity;
-        moonLight.gameObject.SetActive(true);
+        sceneLight.color = originalColor;
+        //moonLight.gameObject.SetActive(true);
         StopAllCoroutines();
     }
 
@@ -126,8 +129,6 @@ public class LightBehavior : MonoBehaviour
         }
     }
 
-    public void RenderMoonlight()
-    {
-        moonLight.gameObject.SetActive(true);
-    }
+    //Moonlight gets Deactivated by RenderManager when player is indoors
+    //and reactivated when player is running in endgame sequence
 }

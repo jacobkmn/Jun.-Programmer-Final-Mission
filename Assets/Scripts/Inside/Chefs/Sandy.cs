@@ -20,15 +20,9 @@ public class Sandy : Chef
 
     public void EndGameChefSequence()
     {
-        Vector3 offset = new Vector3(0, 0, 0);
+        Vector3 offset = new Vector3(0, 0, 0.4f);
         targetPosition = targetDestination.transform.position - offset;
         StartCoroutine(EndGameMoveChef(2.15f, targetPosition)); //moves chef to center stage
-    }
-    //triggered when player steps on outside door trigger
-    public void ItsAllOver()
-    {
-        if (GameManager.instance.GameOver)
-        StopAllCoroutines();
     }
 
     protected override void Animate()

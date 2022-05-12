@@ -21,6 +21,7 @@ public abstract class Chef : MonoBehaviour
     protected Quaternion originalRotation;
     [SerializeField] [Range(0f, 1.0f)] float lerpSpeed;
     protected float current, target;
+    protected float endGameCurrent, endGameTarget;
 
     //When you eventually run into the problem of all chefs activating simultaneously, this is the solution
     //this is also referenced in chef reader
@@ -29,6 +30,17 @@ public abstract class Chef : MonoBehaviour
     {
         get { return isActive; }
         set { isActive = value; }
+    }
+
+    public void Reset()
+    {
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        current = 0;
+        target = 0;
+        endGameCurrent = 0;
+        endGameTarget = 0;
+        Destroy(GetComponent<AudioSource>());
     }
 
     //activates the respective character when door is clicked
@@ -101,14 +113,14 @@ public abstract class Chef : MonoBehaviour
     protected IEnumerator EndGameMoveChef(float time, Vector3 targetPosition)
     {
         float elapsedTime = 0;
-        target = 1;
+        endGameTarget = 1;
 
         //lerp inside of coroutine
         while (elapsedTime < time)
         {
             //Animate();
-            current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
-            transform.position = Vector3.Lerp(originalPosition, targetPosition, current);
+            endGameCurrent = Mathf.MoveTowards(endGameCurrent, endGameTarget, lerpSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(originalPosition, targetPosition, endGameCurrent);
             Animate();
             elapsedTime += Time.deltaTime;
 
@@ -116,6 +128,13 @@ public abstract class Chef : MonoBehaviour
         }
 
         transform.LookAt(Camera.main.transform.position);
+    }
+
+    //triggered when player steps on outside door trigger
+    public void ItsAllOver()
+    {
+        if (GameManager.instance.GameOver)
+            StopAllCoroutines();
     }
 
     //at this point, the user has clicked a food item on menu and chef has returned behind doors to prepare it

@@ -32,10 +32,6 @@ public class MenuUIHandler : MonoBehaviour
     public void Reset() //resets the game
     {
         NoticeCanvas.gameObject.SetActive(false);
-        MenuCanvas.gameObject.SetActive(true);
-        blurImage.SetActive(true);
-        logo.gameObject.SetActive(true);
-        startButton.gameObject.SetActive(true);
         StartCoroutine(DelayedReset());
     }
 
@@ -43,6 +39,10 @@ public class MenuUIHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(3); //controls how long the "eyes stay closed" before start menu displays
         eyesAnim.SetTrigger("Reset");
+        MenuCanvas.gameObject.SetActive(true);
+        blurImage.SetActive(true);
+        logo.gameObject.SetActive(true);
+        startButton.gameObject.SetActive(true);
     }
 
     //Fade the notice message when player presses enter and display the start menu

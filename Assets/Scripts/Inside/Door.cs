@@ -141,7 +141,7 @@ public class Door : MonoBehaviour
             
             anim.SetBool("DoorTriggered", true);
             audioSource.PlayDelayed(0.5f);
-            //start particle system
+            ParticleHandler.instance.PlayIndoorParticles();
             StartCoroutine(RemoveAudioSource());
         }
         else

@@ -22,13 +22,7 @@ public class Fred : Chef
     {
         Vector3 offset = new Vector3(-1.2f, 0, 0);
         targetPosition = targetDestination.transform.position + offset;
-        StartCoroutine(EndGameMoveChef(4.30f, targetPosition)); //moves chef to center stage
-    }
-    //triggered when player steps on outside door trigger
-    public void ItsAllOver()
-    {
-        if (GameManager.instance.GameOver)
-            StopAllCoroutines();
+        StartCoroutine(EndGameMoveChef(4.30f, targetPosition)); //moves chef to stage center-left
     }
 
     protected override void Animate()

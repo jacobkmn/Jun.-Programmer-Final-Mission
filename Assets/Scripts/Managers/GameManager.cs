@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] GameEvent OnRestartGame;
+
     bool gameStarted;
     public bool GameStarted
     {
@@ -24,7 +26,8 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        gameStarted = false; //change this back to false after testing
+        gameStarted = false;
+        gameOver = false;
     }
 
     public void MarkStartGame()
@@ -39,5 +42,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         gameStarted = false;
+        gameOver = false;
+        OnRestartGame.Raise();
     }
 }

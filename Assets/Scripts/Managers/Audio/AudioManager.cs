@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
         {
             if (s.source == null)
             {
-                Debug.LogWarning("sound: " + s.name + ", does not have a source! Please add one in AudioManager");
+                //Debug.LogWarning("sound: " + s.name + ", does not have a source! Please add one in AudioManager");
                 Sourceless.Add(s); //adds sound to a list to be called on when the game is reset
             }
             else if (s.source != null)

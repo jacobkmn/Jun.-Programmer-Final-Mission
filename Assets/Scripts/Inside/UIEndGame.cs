@@ -27,7 +27,7 @@ public class UIEndGame : MonoBehaviour
 
     void OnClick()
     {
-        OnQuitGame.Raise(); //gameManager listens to set global bool active: block raycasts from highlighting doors
+        OnQuitGame.Raise(); //gameManager listens to set global GameOver bool active: block raycasts from highlighting doors
         TextPopUpHolder.gameObject.SetActive(true);
         doorButton.gameObject.SetActive(false);
         LerpCanvasGroup();
@@ -57,12 +57,13 @@ public class UIEndGame : MonoBehaviour
 
         if (gate == 1) //Player selected to exit game, linked to Terminate function below
         {
+            doorButton.gameObject.SetActive(true);
             EndGameCanvas.gameObject.SetActive(false);
-            OnExitGame.Raise();
+            OnExitGame.Raise(); //Picked up by LightBehavior class to start endgame sequence
         }
         else if (gate == 2) //Player selected to keep playing
         {
-            OnQuitGame.Raise(); //gameManager sets global bool to false
+            OnQuitGame.Raise(); //gameManager sets global GameOver bool to false
             TextPopUpHolder.gameObject.SetActive(false);
             doorButton.gameObject.SetActive(true); //door icon shows up after the textPopup dissapears
         }
@@ -83,8 +84,6 @@ public class UIEndGame : MonoBehaviour
 
     void Terminate()
     {
-        //Picked up by LightBehavior class to start endgame sequence
-        //OnExitGame.Raise();
         doorButton.gameObject.SetActive(false); //no idea why, but the door icon shows up after clicking "NO". This line prevents that.
         StartCoroutine(Fader(lerpSpeed, 1)); // closes out UI
     }

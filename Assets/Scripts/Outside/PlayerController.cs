@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameEvent OnPlayerIsIndoors;
     [SerializeField] GameEvent OnPlayerIsRunning;
     [SerializeField] GameEvent OnPlayerHasFallen;
-    [SerializeField] GameEvent OnRestartGame;
+    [SerializeField] GameEvent OnEndGameFinished;
 
     bool isFrozen;
 
@@ -33,6 +33,15 @@ public class PlayerController : MonoBehaviour
         originalPosition = outdoorCam.transform.position;
         originalRotation = outdoorCam.transform.rotation;
         StartCoroutine(MovePlayer());
+    }
+
+    void OnEnable()
+    {
+        if (GameManager.instance.GameOver)
+        {
+            AudioManager.instance.PlaySound("EndGame");
+        }
+        else return;
     }
 
     IEnumerator MovePlayer()
@@ -68,6 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             isFrozen = true;
             AudioManager.instance.StopSound("Walking");
+            AudioManager.instance.ChangeClip("EndGame", gameObject);
         }
     }
 
@@ -75,7 +85,7 @@ public class PlayerController : MonoBehaviour
     public void OnDoorClicked()
     {
         isFrozen = false;
-        StartCoroutine(DoorClickedSequence(outdoorCam.position, indoorCam.transform.position, 0.5f));
+        StartCoroutine(DoorClickedSequence(outdoorCam.position, indoorCam.transform.position, 0.6f));
     }
 
     IEnumerator DoorClickedSequence(Vector3 source, Vector3 target, float overTime)
@@ -92,12 +102,14 @@ public class PlayerController : MonoBehaviour
         }
         ParticleHandler.instance.WindRush.Stop();
         ParticleHandler.instance.Rain.Stop();
+        //indoorCam.gameObject.SetActive(true); //swap rendering camera
+        //gameObject.SetActive(false);
+       
+
+        //yield return new WaitForSeconds(1);
+        OnPlayerIsIndoors.Raise();
         indoorCam.gameObject.SetActive(true); //swap rendering camera
         gameObject.SetActive(false);
-        LightBehavior.instance.MoonLight.gameObject.SetActive(false); 
-
-        yield return new WaitForSeconds(1);
-        OnPlayerIsIndoors.Raise();
     }
 
     //triggered by OnLightDoneFlickering game event in inspector. Comes from LightBehavior Class
@@ -110,17 +122,25 @@ public class PlayerController : MonoBehaviour
     {
         camAnim.enabled = true;
         ParticleHandler.instance.Rain.Play();
+        
         yield return new WaitForSeconds(5.0f); //time it takes for chefs to come center stage
         OnPlayerIsRunning.Raise(); //gets picked up by particlehandler to render the rain and smoke
         camAnim.SetTrigger("EndGame");
         yield return new WaitForSeconds(6.125f); //seconds until player "falls" in the animation
         OnPlayerHasFallen.Raise(); //triggers event for MenuUI to start blink_endgame animation
 
-        yield return new WaitForSeconds(5.0f);
+        //maybe reference audiomanager here to lerp fade the rain audio
+
+        yield return new WaitForSeconds(7.0f);
+        
+        OnEndGameFinished.Raise(); //widespread message for many components to re-initialize for another playthrough
+    }
+
+    public void Reset()
+    {
         camAnim.enabled = false;
         outdoorCam.transform.position = originalPosition;
         outdoorCam.transform.rotation = originalRotation;
         StartCoroutine(MovePlayer());
-        OnRestartGame.Raise(); //widespread message for many components to re-initialize for another playthrough
     }
 }
