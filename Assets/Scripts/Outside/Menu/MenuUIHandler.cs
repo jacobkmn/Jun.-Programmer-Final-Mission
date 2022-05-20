@@ -43,6 +43,8 @@ public class MenuUIHandler : MonoBehaviour
         blurImage.SetActive(true);
         logo.gameObject.SetActive(true);
         startButton.gameObject.SetActive(true);
+        AudioManager.instance.ChangeVolume("Rain", 0.7f);
+        AudioManager.instance.PlaySound("Thunder");
     }
 
     //Fade the notice message when player presses enter and display the start menu
@@ -58,6 +60,7 @@ public class MenuUIHandler : MonoBehaviour
                 noticeAnim.SetTrigger("Fade");
                 yield return new WaitForSeconds(3);
                 NoticeCanvas.gameObject.SetActive(false);
+                AudioManager.instance.PlaySound("Thunder");
                 MenuCanvas.gameObject.SetActive(true);
                 yield break;
             }

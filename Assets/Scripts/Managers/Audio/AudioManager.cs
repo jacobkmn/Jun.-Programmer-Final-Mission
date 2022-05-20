@@ -2,6 +2,7 @@ using UnityEngine.Audio;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,17 +13,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //    return;
-        //}
-
         instance = this;
 
         foreach (Sound s in sounds)
@@ -78,7 +68,7 @@ public class AudioManager : MonoBehaviour
 
     public void PauseSound(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.source.isPlaying);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
 
         if (s == null)
         {
@@ -91,7 +81,9 @@ public class AudioManager : MonoBehaviour
 
     public void StopSound(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.source.isPlaying);
+        //Sound s = Array.Find(sounds, sound => sound.source.isPlaying);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
 
         if (s == null)
         {
@@ -163,5 +155,32 @@ public class AudioManager : MonoBehaviour
         s.source.loop = s.loop;
         s.source.spatialBlend = s.spatialBlend;
         s.source.playOnAwake = s.playOnAwake;
+    }
+
+    public void ChangeVolume(string audioName, float targetVol)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == audioName);
+
+        s.volume = targetVol;
+        s.source.volume = s.volume;
+    }
+
+    public void LerpAudio(string audioName, float targetVol)
+    {
+        StartCoroutine(Lerp(audioName, targetVol));
+    }
+
+    IEnumerator Lerp(string audioName, float targetVol)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == audioName);
+
+        while (s.volume < targetVol - 0.1f)
+        {
+            s.volume = Mathf.MoveTowards(s.volume, targetVol, Time.deltaTime);
+            yield return null;
+        }
+
+        Debug.Log("broke out");
+        s.volume = targetVol;
     }
 }

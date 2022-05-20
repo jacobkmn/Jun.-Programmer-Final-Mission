@@ -31,12 +31,19 @@ public class OutsideDoors : MonoBehaviour
 
     public void Reset()
     {
-        isClicked = false;
+        AudioManager.instance.ChangeClip("OutsideDoor_open", gameObject);
     }
 
     public void CloseOutsideDoors()
     {
+        isClicked = false;
         anim.SetBool("OutsideDoorTriggered", false);
+    }
+
+    public void SlamDoor()
+    {
+        AudioManager.instance.ChangeClip("OutsideDoor_close", gameObject);
+        AudioManager.instance.PlaySoundDelayed("OutsideDoor_close", 0.5f); //was 0.02f
     }
 
     void OnMouseOver()
@@ -64,7 +71,7 @@ public class OutsideDoors : MonoBehaviour
             isClicked = true;
             OnOutsideDoorClicked.Raise(); //starts DoorSequence coroutine in playercontroller, attached to OutsideCamera
             anim.SetBool("OutsideDoorTriggered", true);
-            AudioManager.instance.PlaySoundDelayed("Outside_door", 0.5f);
+            AudioManager.instance.PlaySoundDelayed("OutsideDoor_open", 0.5f);
             AudioManager.instance.PlaySoundDelayed("Ghost", 1.5f);
         }
     }

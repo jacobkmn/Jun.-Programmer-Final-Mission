@@ -100,13 +100,10 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+        AudioManager.instance.ChangeVolume("Rain", 0.25f);
         ParticleHandler.instance.WindRush.Stop();
         ParticleHandler.instance.Rain.Stop();
-        //indoorCam.gameObject.SetActive(true); //swap rendering camera
-        //gameObject.SetActive(false);
-       
 
-        //yield return new WaitForSeconds(1);
         OnPlayerIsIndoors.Raise();
         indoorCam.gameObject.SetActive(true); //swap rendering camera
         gameObject.SetActive(false);
